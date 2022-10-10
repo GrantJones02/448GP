@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>ChessEDU Web Portal - Login</title>
+      <meta charset="UTF-8">
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <link rel="stylesheet" href="../static/base.css">
+      <link rel="stylesheet" href="../static/login.css">
+  </head>
+  <script>
+  //Toggles the "Invalid Login" message whenever the login_div is clicked
+    function toggle()
+    {
+      document.getElementById("invalid_login").style.display="none";
+      document.getElementById("login_div").onclick = "";
+    }
+  </script>
+  <body>
+  <h2 class="login-title">Portal login</h2>
+  <div id="login_div" class="login" onclick="javascript: toggle()">
+    <form id="login" method="POST">
+      {{form.csrf_token}}
+      <label> <b>User Name</b><br /><br /> </label>
+      {{form.username}}
+      <br /><br />
+      <label> <b>Password</b><br /><br /> </label>
+      {{form.password}}
+      <br /><br />
+      <input type="submit" value="Log In Here" />
+      <br /><br />
+    </form>
+    <p id="invalid_login" style="color: red; text-align: center">Invalid login</p>
+  </div>
+
+  </body>
+</html>

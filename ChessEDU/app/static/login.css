@@ -1,0 +1,19 @@
+.login-title {
+  text-align: center;
+  padding: 2px;
+  margin: 15px 0;
+}
+
+.login {
+  width: 250px;
+  overflow: hidden;
+  margin: auto;
+  padding: 80px;
+  background: #d3d3d3;
+  border-radius: 15px;
+  box-sizing: content-box;
+}
+
+#login {
+  text-align: center;
+}

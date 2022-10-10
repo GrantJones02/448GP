@@ -1,0 +1,15 @@
+{% extends "home.html" %}
+
+{% block title %}Example Course Page{% endblock %}
+{% block header %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='inventory.css') }}"/>
+{% endblock %}
+
+{% block body %}
+  <h1>Example Title</h1>
+  <h2>Example Section Header<h2>
+  <p>Paragraph placeholder. Some text about the lesson or module should go here</p>
+  <br>
+  <h2>Another Section Header<h2>
+  <p>Another paragraph placeholder. This one will probably say something different from the first one.<p>
+{% endblock %}

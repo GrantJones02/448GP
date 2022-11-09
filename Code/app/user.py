@@ -10,7 +10,7 @@ class User(UserMixin):
         Return : none
         Descr. : sets self attributes
     '''
-    def __init__(self, id, username, password, role, lastlogin, courses):
+    def __init__(self, id, username, password, role, lastlogin):
         self.id = id
         self.username = username
         self.password = password
@@ -18,8 +18,6 @@ class User(UserMixin):
         self.role = role
         # YYYY-MM-DD HH:MM:SS.SSS
         self.lastlogin = lastlogin
-        #[<Course ID> :: Int]
-        self.courses = courses
 
     '''
         Method : is_active
@@ -56,15 +54,6 @@ class User(UserMixin):
     '''
     def is_active(self):
         return True
-
-    '''
-        Method : get_details
-        Param : self
-        Return : self.roles dictionary
-        Descr. : To be used in checking user details such as name and last login
-    '''
-    def get_courses(self):
-        return self.courses
 
     '''
         Method : get_roles

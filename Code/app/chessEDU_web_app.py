@@ -23,6 +23,9 @@ login_manager.login_view = 'login'
 # Temporary features for dev. environment
 CORS(app)
 
+# Manager objects
+cred_manager = CredentialManager()
+
 '''
     function: load_user
     param: user_id (int)
@@ -31,7 +34,8 @@ CORS(app)
 '''
 @login_manager.user_loader
 def load_user(user_id):
-    return(db.get_user_by_id(user_id))
+    user_info = cred_manager.get_user_by_id(user_id)
+    return(User(user_info[0], user_info[1], user_info[2], user_info[3], user_info[4]))
 
 ### Routes ###
 '''
@@ -41,7 +45,6 @@ def load_user(user_id):
  descr : landing page after logging in, renders home page
 '''
 @app.route('/', methods=('GET', 'POST'))
-@login_required
 def home():
     # Renders landing page on initial load
     return render_template("home.html")
@@ -60,7 +63,7 @@ def login():
     # Form from forms file
     user_login_form = login_form()
     if user_login_form.validate_on_submit():
-        user_details = db.get_details_by_username(user_login_form.username.data)
+        user_details = cred_manager.get_details_by_username(user_login_form.username.data)
         if user_details is not None:
             # Creates user (returned from load_user)
             User = load_user(user_details[0])
@@ -94,7 +97,6 @@ def logout():
     Login required
 '''
 @app.route('/course', methods=('GET', 'POST'))
-@login_required
 def courses():
     return render_template("course.html")
 
@@ -106,21 +108,20 @@ def courses():
     Login required
 '''
 @app.route('/board', methods=('GET', 'POST'))
-@login_required
 def board():
     return render_template("board.html")
 
-# '''
-#     function : account
-#     params : None
-#     return : Renders the board page
-#     descr. : Directs the user to a page with their account information displayed.
-#     Login required
-# '''
-# @app.route('/account', methods=('GET', 'POST'))
-# @login_required
-# def account():
-#     return render_template("account.html")
+'''
+    function : account
+    params : None
+    return : Renders the board page
+    descr. : Directs the user to a page with their account information displayed.
+    Login required
+'''
+@app.route('/account', methods=('GET', 'POST'))
+@login_required
+def account():
+    return render_template("account.html")
 
 # '''
 #     function : admin
@@ -136,24 +137,24 @@ def board():
 #         return redirect(url_for('unauthorized'))
 #     else:
 #         if request.method == "GET":
-#             return render_template("admin.html", userData=db.admin_user_data())
+#             return render_template("admin.html", userData=cred_manager.admin_user_data())
 #         elif request.method == "POST":
 #             # Do something
-#             return render_template("admin.html", userData=db.admin_user_data())
+#             return render_template("admin.html", userData=cred_manager.admin_user_data())
 #         else:
 #             return redirect(url_for('home'))
 
-# '''
-#     function : unauthorized
-#     param : none
-#     return : Renders the unauthorized page
-#     descr. : Redirects a user to this page when they attempt to access pages without required permissions.
-#     Login required
-# '''
-# @app.route('/unauthorized', methods=('GET', 'POST'))
-# @login_required
-# def unauthorized():
-#     return render_template("unauth.html")
+'''
+    function : unauthorized
+    param : none
+    return : Renders the unauthorized page
+    descr. : Redirects a user to this page when they attempt to access pages without required permissions.
+    Login required
+'''
+@app.route('/unauthorized', methods=('GET', 'POST'))
+@login_required
+def unauthorized():
+    return render_template("unauth.html")
 
 
 

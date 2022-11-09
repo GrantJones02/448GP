@@ -48,7 +48,7 @@ def create_user_tables() -> bool:
     c = conn.cursor()
     try:
         # Create user table
-        c.execute("create table users(userid int primary key not null, username text not null, password text not null, role int not null, lastlogin text not null, courses text);")
+        c.execute("create table users(userid int primary key not null, username text not null, password text not null, role int not null, lastlogin text not null);")
         return True
     except Error as e:
         print(e)
@@ -84,7 +84,7 @@ def create_admin() -> str:
     password = admin_password()
     try:
         # Create admin user : netarch_admin
-        create_user_string = f'insert into users values(1, \"chessEDU_admin\", \"{password}\", 0, \"0000-00-00 00:00:00.000\", 0)'
+        create_user_string = f'insert into users values(1, \"chessEDU_admin\", \"{password}\", 0, \"0000-00-00 00:00:00.000\")'
         c.execute(create_user_string)
         conn.commit()
         return(password)

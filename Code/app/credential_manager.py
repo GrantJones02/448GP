@@ -1,4 +1,6 @@
-from objects import User
+import os
+import sqlite3
+from pathlib import Path
 from datetime import date
 
 class CredentialManager():

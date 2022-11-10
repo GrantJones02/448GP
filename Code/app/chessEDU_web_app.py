@@ -5,8 +5,8 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 from flask_cors import CORS
 ## Relative import for forms and objects used in the app ##
 from forms import login_form
-from objects import User
-import database_functions as db
+from user import User
+from credential_manager import CredentialManager
 ## Other packegs for avrious other functionality ##
 import sqlite3
 import secrets
@@ -47,7 +47,7 @@ def load_user(user_id):
 @app.route('/', methods=('GET', 'POST'))
 def home():
     # Renders landing page on initial load
-    return render_template("home.html")
+    return render_template("base.html")
 
 '''
     function : login
@@ -75,7 +75,7 @@ def login():
                 flash("Login successful!")
                 return redirect(url_for('home'))
     # Load login page on load AND failed login
-    return render_template('login.html', form=user_login_form)
+    return render_template('login.html', form=user_login_form, logged_in=current_user.is_authenticated)
 
 '''
     function : logout
@@ -98,7 +98,7 @@ def logout():
 '''
 @app.route('/course', methods=('GET', 'POST'))
 def courses():
-    return render_template("course.html")
+    return render_template("course.html", logged_in=current_user.is_authenticated)
 
 '''
     function : board
@@ -109,7 +109,7 @@ def courses():
 '''
 @app.route('/board', methods=('GET', 'POST'))
 def board():
-    return render_template("board.html")
+    return render_template("board.html", logged_in=current_user.is_authenticated)
 
 '''
     function : account
@@ -119,9 +119,8 @@ def board():
     Login required
 '''
 @app.route('/account', methods=('GET', 'POST'))
-@login_required
 def account():
-    return render_template("account.html")
+    return render_template("page_template.html", logged_in=current_user.is_authenticated)
 
 # '''
 #     function : admin

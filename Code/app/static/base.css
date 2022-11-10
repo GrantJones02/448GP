@@ -21,7 +21,8 @@ body {
 .pagebtn,
 .dropdown,
 .dropbtn,
-.logoutbtn {
+.logoutbtn,
+.loginbtn {
   cursor: pointer;
   font-size: 16px;
   border: none;
@@ -39,7 +40,8 @@ body {
   background-color: lightblue;
 }
 
-.logout {
+.logout,
+.login {
   float: right;
   overflow: hidden;
   color: white;

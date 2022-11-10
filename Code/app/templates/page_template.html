@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Example Course Page{% endblock %}
-
+{% block title %}ChessEDU Page Template{% endblock %}
 {% block header %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='inventory.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='<name>.css') }}"/>
 {% endblock %}
 
 {% block login %}
@@ -23,7 +22,7 @@
 {% endblock %}
 
 {% block body %}
-  <h1>Can I edit in real time?</h1>
+  <h1>This is where the body would go.</h1>
   <h2>Example Section Header<h2>
   <p>Paragraph placeholder. Some text about the lesson or module should go here</p>
   <br>

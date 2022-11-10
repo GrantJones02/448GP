@@ -62,7 +62,7 @@ class CredentialManager():
         if response_user is None:
             return None
         else:
-            return reponse_user
+            return response_user
 
     '''
         function : get_details_by_username
@@ -70,8 +70,8 @@ class CredentialManager():
         returns : none
         descr. : connect with the app database to return a user's id, username, password, role, and last login
     '''
-    def get_details_by_username(username: str):
-        conn = sqlite3.connect(CRED_DATABASE)
+    def get_details_by_username(self, username: str):
+        conn = sqlite3.connect(self._CRED_DB)
         curs = conn.cursor()
         curs.execute("select * from users where username=(?);", [username])
         user_details = curs.fetchone()

@@ -47,7 +47,7 @@ def load_user(user_id):
 @app.route('/', methods=('GET', 'POST'))
 def home():
     # Renders landing page on initial load
-    return render_template("base.html")
+    return render_template("base.html", logged_in=current_user.is_authenticated)
 
 '''
     function : login

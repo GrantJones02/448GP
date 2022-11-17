@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}ChessEDU Page Template{% endblock %}
+{% block header %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='<name>.css') }}"/>
+{% endblock %}
+
+{% block login %}
+  {% if logged_in %}
+  <div class="logout">
+    <button class="logoutbtn" onclick="window.location.href='/logout'">
+      Logout
+    </button>
+  </div>
+  {% else %}
+  <div class="login">
+    <button class="loginbtn" onclick="window.location.href='/login'">
+      Login / Sign Up
+    </button>
+  </div>
+  {% endif %}
+{% endblock %}
+
+{% block body %}
+  <h1>This is where the body would go.</h1>
+  <h2>Example Section Header<h2>
+  <p>Paragraph placeholder. Some text about the lesson or module should go here</p>
+  <br>
+  <h2>Another Section Header<h2>
+  <p>Another paragraph placeholder. This one will probably say something different from the first one.<p>
+{% endblock %}

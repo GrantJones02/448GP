@@ -5,7 +5,7 @@ import random
 import string
 
 DIR = os.getcwd() + os.path.sep + "databases" + os.path.sep + "sqlite3"
-MOD_FILE = DIR + os.path.sep + "chessEDU_modules.db"
+MOD_FILE = DIR + os.path.sep + "chessEDU_courses.db"
 CRED_FILE = DIR + os.path.sep + "chessEDU_credentials.db"
 
 # Generate a 15-characer long password for the admin account
@@ -58,16 +58,13 @@ def create_user_tables() -> bool:
             conn.commit()
             conn.close()
 
-def create_sqlar_table() -> bool:
+def create_course_table() -> bool:
     conn = sqlite3.connect(MOD_FILE)
     c = conn.cursor()
     try:
         # Create sqlar table
-        # name text primary key -- name of the file (the full pathname relative to the root of the archive)
-        # mtime int             -- last modification time
-        # sz int                -- original file zie
-        # data blob             -- compressed content
-        c.execute("create table sqlar(name text primary key not null, mode int not null, mtime int not null, sz int not null, data blob not null);")
+        # name text primary key -- name of the file
+        c.execute("create table courses(courseid int primary key not null, name text not null);")
         return True
     except Error as e:
         print(e)
@@ -76,6 +73,18 @@ def create_sqlar_table() -> bool:
         if conn:
             conn.commit()
             conn.close()
+
+def create_courses() -> bool:
+    conn = sqlite3.connect(MOD_FILE)
+    c = conn.cursor()
+    try:
+        create_example_course = f'insert into courses values(1, \"course_example.html\")'
+        c.execute(create_example_course)
+        conn.commit()
+        return True
+    except Error as e:
+        print(e)
+        return False
 
 # Create admin account (no other users should exist, so ID is hard-coded to 1)
 def create_admin() -> str:
@@ -100,16 +109,20 @@ def deploy_db():
                 password = create_admin()
                 if (password is not None):
                     print(f"Successfully created admin\n\t Username: \"chessEDU_admin\"\n\tPassword: \"{password}\"")
-                    if create_sqlar_table():
-                        print("Successfully created module sqlar tables")
+                    if create_course_table():
+                        print("Successfully created course tables")
+                        if create_courses():
+                            print("Successfully added courses to table")
+                        else:
+                            print("Unalbe to add courses to table")
                     else:
-                        print("Unable to create sqlar database and tables")
+                        print("Unable to create course database tables")
                 else:
                     print("Unable to create admin user")
             else:
                 print("Unable to create credential database tables")
         else:
-            print("Unable to create module sqlar and credential databases")
+            print("Unable to create courses and credential databases")
     else:
         print("Unable to create database directory")
 

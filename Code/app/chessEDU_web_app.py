@@ -42,7 +42,7 @@ def load_user(user_id):
  function : home
  param : none
  return : render template
- descr : landing page after logging in, renders home page
+ descr : landing page, renders home page
 '''
 @app.route('/', methods=('GET', 'POST'))
 def home():
@@ -90,14 +90,25 @@ def logout():
     return redirect(url_for("login"))
 
 '''
-    function : courses
+    function : catalog
+    params : None
+    return : Renders the course catalog page
+    descr. : Directs the user to a page that lists available courses.
+    Login required
+'''
+@app.route('/catalog', methods=('GET', 'POST'))
+def catalog():
+    return render_template("catalog.html", logged_in=current_user.is_authenticated)
+
+'''
+    function : course
     params : None
     return : Renders the courses page
     descr. : Directs the user to a page that lists available courses.
     Login required
 '''
 @app.route('/course', methods=('GET', 'POST'))
-def courses():
+def course():
     return render_template("course.html", logged_in=current_user.is_authenticated)
 
 '''

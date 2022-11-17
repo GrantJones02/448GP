@@ -10,7 +10,23 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="board1" style="width: 400px"></div>
+
+    <div id="lesson1image">
+            <div class="ClickableImage" id="instruction" style="background-color:lightgray;">
+                <h3>Click on the black king!</h3>
+            </div>
+
+        <div id="board1" style="width: 400px"></div>
+        
+        <div class="ClickableImage" id="feedback" style="background-color:lightgray;">
+                <h3 id="waiting">Waiting for user input...</h3>
+                <h3 id="good_outcome" style="color:green;">Good job!</h3>
+                <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
+            </div>
+        </div>
+
+  
+
 
     <script src="interactivechess.js"></script>
     <script>
@@ -24,6 +40,7 @@
 		// https://chessboardjs.com/docs for documentation
 
         initialize();
+        showTextFeedback();
 
     </script>
 </body>

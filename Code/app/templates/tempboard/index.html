@@ -39,8 +39,26 @@
 		// Very temporary chess board
 		// https://chessboardjs.com/docs for documentation
 
-        initialize();
-        showTextFeedback();
+        var boardUI = new InteractiveChess(   
+        /*  Outcome values of pieces,
+            2D array with outcome followed by all squares where valid.
+            The special case ALL ELSE can be used to cover the rest of the board
+            without explicitly saying all the squares you want to cover.
+            */    
+        [   ["good_outcome", "d5"],
+            ["bad_outcome", "ALL ELSE"]
+        ],
+        /*  Position values of pieces,
+            2D array with piece position, piece name format. 
+            */
+        [   ["d3", "wP"],
+            ["e3", "wK"],
+            ["d5", "bK"]
+        ],
+        false,
+        "bK",
+        board1
+        );
 
     </script>
 </body>

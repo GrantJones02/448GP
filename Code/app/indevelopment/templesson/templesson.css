@@ -1,0 +1,10 @@
+/*templesson.css*/
+/*author: Jack Reynolds*/
+/*written: 6 November 2022*/
+
+div.ClickableImage {
+    width: 25%;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+  }

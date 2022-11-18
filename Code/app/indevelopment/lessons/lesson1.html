@@ -9,10 +9,27 @@
 <html> 
     <head> 
         <title> Lesson 1 </title> 
-        <link href="templesson.css" 
-            rel="stylesheet" 
-            type="text/css"/>
-    </head> 
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+        Scripts for HTML Tabs element
+    --> <script src="original_js/Tabs.js"></script>
+
+    <!--
+        Scripts for HTML ClickableImage element
+    --> <script src="original_js/ClickableImage.js"></script>
+    <link href="original_css/lessonUI.css" rel="stylesheet" type="text/css"/>
+
+    <!-- 
+        Scripts for HTML InteractiveChess element
+    --> <script src="js/chessboard-1.0.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
+        <script src="original_js/InteractiveChess.js"></script>
+    </head>
+ 
     <body>
         <div id="lessontitle">
             <h1>Lesson 1: How To Use ChessEDU</h1>
@@ -84,9 +101,9 @@
                     to the outcome desired to show if the user clicks the associated image.
                 --> <div class="ClickableImage" id="images">
                         <div id="image1"></div>
-                            <img onclick="showFeedback(lesson1image, 'bad_outcome')" src="king_w.png">
+                            <img onclick="showFeedback(lesson1image, 'bad_outcome')" src="img/chesspieces/wikipedia/wK.png">
                         <div id="image2"></div>
-                            <img onclick="showFeedback(lesson1image, 'good_outcome')" src="king_b.png">
+                            <img onclick="showFeedback(lesson1image, 'good_outcome')" src="img/chesspieces/wikipedia/bK.png">
                     </div>
                 <!--
                     This <div> element lists the possible outcomes of the event
@@ -122,8 +139,6 @@
             <button onclick="next(lessontabs)">|>></button>
             <button onclick="window.location.href='index.html';">Lesson Home</button>
         </div>
-        <script src="interactive_tabs.js"></script>
-        <script src="interactive_images.js"></script>
         <script>
             const lessontabs = new Tabs('lessontabs');
             const lesson1image = new ClickableImage('lesson1image');

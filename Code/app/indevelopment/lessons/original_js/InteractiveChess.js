@@ -263,7 +263,7 @@ function showPieceMove(myInteractiveChess, dataSquare)
             }
         }
         myInteractiveChess.piecesBoard[row][col] = myInteractiveChess.pieceToMove;
+        let moveFEN = currentPosition + "-" + dataSquare;
+        myInteractiveChess.chessBoardJS.move(moveFEN);
     }
-    let moveFEN = currentPosition + "-" + dataSquare;
-    myInteractiveChess.chessBoardJS.move(moveFEN);
 }

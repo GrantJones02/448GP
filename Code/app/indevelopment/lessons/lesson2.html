@@ -87,21 +87,256 @@
                 <img src="img/chesspieces/wikipedia/bP.png">
             </div>
             <div id="tab3">
-
                 <div id="tab3boardheader">
-                    <div class="ClickableImage" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on the black king!</h3>
+                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
+                        <h3>Click on any pawn on the board</h3>
                     </div>
-        
                 <div id="tab3board" style="width: 400px"></div>
-
-                <div class="ClickableImage" id="tab3boardfeedback" style="background-color:lightgray;">
+                <div class="InteractiveChess" id="tab3boardfeedback" style="background-color:lightgray;">
                         <h3 id="waiting">Waiting for user input...</h3>
                         <h3 id="good_outcome" style="color:green;">Good job!</h3>
                         <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
                     </div>
                 </div>
-
+                <script>
+                    var tab3board = Chessboard('tab3board', 'start');
+                    var boardUI = new InteractiveChess(   
+                    [   ["good_outcome", "a2","b2","c2","d2","e2","f2","g2","h2",
+                        "a7","b7","c7","d7","e7","f7","g7","h7"],
+                        ["bad_outcome", "ALL ELSE"]
+                    ],
+                    [],
+                    false,
+                    "",
+                    tab3board,
+                    "tab3board"
+                    );
+                </script>
+            </div>
+            <div id="tab4">
+                <h2>Rooks</h2>
+                <p>
+                Rooks are one of the more powerful<br>
+                pieces in your arsenal.<br>
+                <br>
+                They are shaped like towers,<br>
+                with miniature battlements that top them.<br>
+                <br>
+                These pieces are locked away<br>
+                in the corners of the board.<br>
+                <br>
+                A rook in most digital formats is shown<br>
+                like the image below.<br>
+                <br>
+                <img src="img/chesspieces/wikipedia/bR.png">
+            </div>
+            <div id="tab5">
+                <div id="tab5boardheader">
+                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
+                        <h3>Click on any rook on the board</h3>
+                    </div>
+                <div id="tab5board" style="width: 400px"></div>
+                <div class="InteractiveChess" id="tab5boardfeedback" style="background-color:lightgray;">
+                        <h3 id="waiting">Waiting for user input...</h3>
+                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
+                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
+                    </div>
+                </div>
+                <script>
+                    var tab5board = Chessboard('tab5board', 'start');
+                    var boardUI = new InteractiveChess(   
+                    [   ["good_outcome", "a1","h1","a8","h8"],
+                        ["bad_outcome", "ALL ELSE"]
+                    ],
+                    [],
+                    false,
+                    "",
+                    tab5board,
+                    "tab5board"
+                    );
+                </script>
+            </div>
+            <div id="tab6">
+                <h2>Knights</h2>
+                <p>
+                Knights are a more modest<br>
+                piece in your arsenal.<br>
+                <br>
+                They are shaped like horses,<br>
+                rather than knights in shining armor.<br>
+                <br>
+                These pieces are inward from the rooks<br>
+                on the top and bottom edges of the board.<br>
+                <br>
+                A knight in most digital formats is shown<br>
+                like the image below.<br>
+                <br>
+                <img src="img/chesspieces/wikipedia/bN.png">
+            </div>
+            <div id="tab7">
+                <div id="tab7boardheader">
+                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
+                        <h3>Click on any knight on the board</h3>
+                    </div>
+                <div id="tab7board" style="width: 400px"></div>
+                <div class="InteractiveChess" id="tab7boardfeedback" style="background-color:lightgray;">
+                        <h3 id="waiting">Waiting for user input...</h3>
+                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
+                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
+                    </div>
+                </div>
+                <script>
+                    var tab7board = Chessboard('tab7board', 'start');
+                    var boardUI = new InteractiveChess(   
+                    [   ["good_outcome", "b1","g1","b8","g8"],
+                        ["bad_outcome", "ALL ELSE"]
+                    ],
+                    [],
+                    false,
+                    "",
+                    tab7board,
+                    "tab7board"
+                    );
+                </script>
+            </div>
+            <div id="tab8">
+                <h2>Bishops</h2>
+                <p>
+                Bishops are another moderately powerful<br>
+                piece in your arsenal.<br>
+                <br>
+                They are shaped like a taller build of pawns,<br>
+                with a slit on their face marking their expression.<br>
+                <br>
+                These pieces are inward one from the knights<br>
+                on the top and bottom edges of the board.<br>
+                <br>
+                A bishop in most digital formats is shown<br>
+                like the image below.<br>
+                <br>
+                <img src="img/chesspieces/wikipedia/bB.png">
+            </div>
+            <div id="tab9">
+                <div id="tab9boardheader">
+                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
+                        <h3>Click on any bishop on the board</h3>
+                    </div>
+                <div id="tab9board" style="width: 400px"></div>
+                <div class="InteractiveChess" id="tab9boardfeedback" style="background-color:lightgray;">
+                        <h3 id="waiting">Waiting for user input...</h3>
+                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
+                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
+                    </div>
+                </div>
+                <script>
+                    var tab9board = Chessboard('tab9board', 'start');
+                    var boardUI = new InteractiveChess(   
+                    [   ["good_outcome", "c1","f1","c8","f8"],
+                        ["bad_outcome", "ALL ELSE"]
+                    ],
+                    [],
+                    false,
+                    "",
+                    tab9board,
+                    "tab9board"
+                    );
+                </script>
+            </div>
+            <div id="tab10">
+                <h2>Queens</h2>
+                <p>
+                Your queen is your single most powerful<br>
+                piece in your arsenal.<br>
+                <br>
+                She has a crown atop her head,<br>
+                but unlike the King's crown hers has no cross.<br>
+                <br>
+                She sits on the edge of the D file,<br>
+                so that when the board is set up<br>
+                she sits on her own color.<br>
+                <br>
+                A queen in most digital formats is shown<br>
+                like the image below.<br>
+                <br>
+                <img src="img/chesspieces/wikipedia/bQ.png">
+            </div>
+            <div id="tab11">
+                <div id="tab11boardheader">
+                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
+                        <h3>Click on either queen on the board</h3>
+                    </div>
+                <div id="tab11board" style="width: 400px"></div>
+                <div class="InteractiveChess" id="tab11boardfeedback" style="background-color:lightgray;">
+                        <h3 id="waiting">Waiting for user input...</h3>
+                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
+                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
+                    </div>
+                </div>
+                <script>
+                    var tab11board = Chessboard('tab11board', 'start');
+                    var boardUI = new InteractiveChess(   
+                    [   ["good_outcome", "d1","d8"],
+                        ["bad_outcome", "ALL ELSE"]
+                    ],
+                    [],
+                    false,
+                    "",
+                    tab11board,
+                    "tab11board"
+                    );
+                </script>
+            </div>
+            <div id="tab12">
+                <h2>The King</h2>
+                <p>
+                The King is not very powerful,<br>
+                but it is the most strategically important<br>
+                piece in your arsenal.<br>
+                <br>
+                If your king is captured,<br>
+                you will surrender to your opponent.<br>
+                <br>
+                A king in most digital formats is shown<br>
+                like the image below.<br>
+                <br>
+                <img src="img/chesspieces/wikipedia/bK.png">
+            </div>
+            <div id="tab13">
+                <div id="tab13boardheader">
+                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
+                        <h3>Click on either king on the board</h3>
+                    </div>
+                <div id="tab13board" style="width: 400px"></div>
+                <div class="InteractiveChess" id="tab13boardfeedback" style="background-color:lightgray;">
+                        <h3 id="waiting">Waiting for user input...</h3>
+                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
+                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
+                    </div>
+                </div>
+                <script>
+                    var tab13board = Chessboard('tab13board', 'start');
+                    var boardUI = new InteractiveChess(   
+                    [   ["good_outcome", "e1","e8",],
+                        ["bad_outcome", "ALL ELSE"]
+                    ],
+                    [],
+                    false,
+                    "",
+                    tab13board,
+                    "tab13board"
+                    );
+                </script>
+            </div>
+            <div id="tab14">
+                <h2>Lesson Complete</h2>
+                <p>
+                You have completed this lesson!<br>
+                To progress to the next lesson, click the "Lesson Home" button<br>
+                or use the button below to return to the lesson select page.<br>
+                <br>
+                <button onclick="window.location.href='index.html';">Complete Lesson</button>
+                <br>
+                To restart this lesson, hit the next button again.<br> 
                 </p>
             </div>
         </div>
@@ -112,33 +347,6 @@
         </div>
         <script>
             const lessontabs = new Tabs('lessontabs');
-            var tab3board = Chessboard('tab3board', 'start');
-
-            var boardUI = new InteractiveChess(   
-        /*  Outcome values of pieces,
-            2D array with outcome followed by all squares where valid.
-            The special case ALL ELSE can be used to cover the rest of the board
-            without explicitly saying all the squares you want to cover.
-            */    
-        [   ["good_outcome", "a2","b2","c2","d2","e2","f2","g2","h2",
-                             "a7","b7","c7","d7","e7","f7","g7","h7"],
-            ["bad_outcome", "ALL ELSE"]
-        ],
-        /*  Position values of pieces,
-            2D array with piece position, piece name format. 
-            */
-        [   ["d3", "wP"],
-            ["e3", "wK"],
-            ["d5", "bK"]
-        ],
-        false,
-        "bK",
-        tab3board,
-        "tab3boardfeedback"
-        );
-
-
-
         </script>  
     </body> 
 </html>

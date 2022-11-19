@@ -6,9 +6,11 @@
 // It seems to be going well
 
 class InteractiveChess {
-    constructor(inputOutcomes, inputPieces, inputAllowPieceMovement, inputPieceToMove, inputChessBoardJS, inputFeedbackPath) {
+    constructor(inputOutcomes, inputPieces, inputAllowPieceMovement, inputPieceToMove, inputChessBoardJS, inputName) {
 
 // INITIAL ATTRIBUTES TO SET
+this.name = inputName;
+
 this.outcomeBoard = [
     ['','','','','','','',''],
     ['','','','','','','',''],
@@ -39,7 +41,7 @@ this.allowPieceMovement = inputAllowPieceMovement;
 
 this.chessBoardJS = inputChessBoardJS;
 
-this.feedbackPath = inputFeedbackPath;
+this.feedbackPath = inputName + "feedback";
 
 // INITIAL FUNCTIONS TO RUN
 initializeUI(this);
@@ -127,8 +129,9 @@ function initializeUI(myInteractiveChess)
 
 function makeChessSquaresClickable(myInteractiveChess)
 {
+    let squaresSection = document.getElementById(myInteractiveChess.name);
     //the CSS class all the squares have
-    let squares = document.getElementsByClassName("square-55d63");
+    let squares = squaresSection.getElementsByClassName("square-55d63");
     for(let i = 0; i < 64; i++)
     {
         let dataSquare = squares[i].getAttribute("data-square");

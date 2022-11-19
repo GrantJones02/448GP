@@ -8,3 +8,11 @@ div.ClickableImage {
     border-color: black;
     border-style: solid;
   }
+
+div.InteractiveChess {
+    width: 392px;
+    height: 52px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+}

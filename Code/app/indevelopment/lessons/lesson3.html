@@ -1,11 +1,11 @@
 <!--
-    file:       lesson2.html
+    file:       lesson3.html
     author:     Jack Reynolds
-    modified:   18 November 2022
+    modified:   19 November 2022
 -->
 <html> 
     <head> 
-        <title> Lesson 2 </title> 
+        <title> Lesson 3 </title> 
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,7 @@
  
     <body>
         <div id="lessontitle">
-            <h1>Lesson 2: Pieces of the Game</h1>
+            <h1>Lesson 3: Basic Movement</h1>
         </div>
         <div id="headerbuttons">
             <button onclick="previous(lessontabs)"><<|</button>
@@ -44,52 +44,51 @@
                 We're glad to have you.<br>
                 <br>
                 In this lesson, you will learn<br>
-                the names of the different pieces<br>
+                how to move each of the individual pieces<br>
                 available to you during the game.<br>
                 <br>
                 Please continue to the next page<br>
-                to start this lesson.<br> 
+                to start this lesson.<br>
+                <br> 
                 </p>
             </div>
             <div id="tab1">
-                <h2>White and Black Pieces</h2>
+                <h2>Turn Order and Taking Pieces</h2>
                 <p>
-                    You will notice on a chessboard<br>
-                    arranged in its starting position<br>
-                    has two colors of pieces:<br>
-                    Black and White.<br>
+                    Chess is a game played in turns,<br>
+                    where the player with the white pieces<br>
+                    moves before the player with the black pieces.<br>
                     <br>
-                    The two colors of pieces correspond<br>
-                    to the two players of the game,<br>
-                    and each player has the same<br>
-                    set of pieces to use.<br>
+                    Each kind of piece has a set movement pattern<br>
+                    it can move relative to where it is now.<br>
                     <br>
-                    The player with the white pieces<br> 
-                    makes the first move.<br>
-                    </b>
+                    Pieces of your own color block other pieces<br>
+                    of your color from being moved.<br>
+                    <br>
+                    Your pieces, however, can move over a piece<br>
+                    of an opponent's color to capture that piece.<br>
+                    <br>
                 </p>
             </div>
             <div id="tab2">
                 <h2>Pawns</h2>
                 <p>
-                Pawns are the weakest and most numerous<br>
-                piece in your arsenal.<br>
+                Pawns have the most limited movement of any piece.<br>
                 <br>
-                They are the smallest piece on the board<br>
-                and are have a rounded face with no detail.<br>
+                A pawn can only move forward a single square normally,<br>
+                but if it is still in the starting position,<br>
+                it can move two squares forward in a single turn.<br>
                 <br>
-                The second and seventh rows<br>
-                contain the pawns.<br>
+                The pawn is also the only piece that cannot<br>
+                capture in the same way that it moves.<br>
                 <br>
-                A pawn in most digital formats is shown<br>
-                like the image below.<br>
+                The pawn captures forward diagonally.
                 <br>
-                <img src="img/chesspieces/wikipedia/bP.png">
             </div>
             <div id="tab3">
                 <div id="tab3boardheader">
                     <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any pawn on the board</h3>
+                        <h3>Click on any space the white </h3>
                     </div>
                 <div id="tab3board" style="width: 400px"></div>
                 <div class="InteractiveChess" id="tab3boardfeedback" style="background-color:lightgray;">
@@ -99,10 +98,15 @@
                     </div>
                 </div>
                 <script>
-                    var tab3board = Chessboard('tab3board', 'start');
+                    var pawnScheme = {
+                        e2: 'wP',
+                        d3: 'bP',
+                        e1: 'wK',
+                        e8: 'bK'
+                    }
+                    var tab3board = Chessboard('tab3board', pawnScheme);
                     var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "a2","b2","c2","d2","e2","f2","g2","h2",
-                        "a7","b7","c7","d7","e7","f7","g7","h7"],
+                    [   ["good_outcome", "d3","e3","e4"],
                         ["bad_outcome", "ALL ELSE"]
                     ],
                     [],

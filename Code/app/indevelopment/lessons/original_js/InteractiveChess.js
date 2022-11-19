@@ -6,7 +6,7 @@
 // It seems to be going well
 
 class InteractiveChess {
-    constructor(inputOutcomes, inputPieces, inputAllowPieceMovement, inputPieceToMove, inputChessBoardJS) {
+    constructor(inputOutcomes, inputPieces, inputAllowPieceMovement, inputPieceToMove, inputChessBoardJS, inputFeedbackPath) {
 
 // INITIAL ATTRIBUTES TO SET
 this.outcomeBoard = [
@@ -39,9 +39,11 @@ this.allowPieceMovement = inputAllowPieceMovement;
 
 this.chessBoardJS = inputChessBoardJS;
 
+this.feedbackPath = inputFeedbackPath;
+
 // INITIAL FUNCTIONS TO RUN
 initializeUI(this);
-showTextFeedback("waiting");
+showTextFeedback(this, "waiting");
     }
 }
 
@@ -223,13 +225,13 @@ function checkSquare(myInteractiveChess, dataSquare)
     let col = coords[1];
     
     outcomeToDisplay = myInteractiveChess.outcomeBoard[row][col];
-    showTextFeedback(outcomeToDisplay);
+    showTextFeedback(myInteractiveChess, outcomeToDisplay);
     showPieceMove(myInteractiveChess, dataSquare);
 }
 
-function showTextFeedback(outcomeToDisplay)
+function showTextFeedback(myInteractiveChess, outcomeToDisplay)
 {
-    let outcomes = document.getElementById("feedback");
+    let outcomes = document.getElementById(myInteractiveChess.feedbackPath);
     for(let i = 0; i < outcomes.children.length; i++)
     {
         if(outcomes.children[i].id == outcomeToDisplay)

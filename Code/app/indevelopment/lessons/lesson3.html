@@ -88,7 +88,7 @@
             <div id="tab3">
                 <div id="tab3boardheader">
                     <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any space the white </h3>
+                        <h3>Click on any space the white pawn can move to</h3>
                     </div>
                 <div id="tab3board" style="width: 400px"></div>
                 <div class="InteractiveChess" id="tab3boardfeedback" style="background-color:lightgray;">
@@ -98,13 +98,16 @@
                     </div>
                 </div>
                 <script>
-                    var pawnScheme = {
+                    var scheme = {
+                        c6: 'bN',
+                        d3: 'bR',
                         e2: 'wP',
-                        d3: 'bP',
                         e1: 'wK',
-                        e8: 'bK'
+                        e8: 'bK',
+                        g8: 'wB',
+                        h5: 'bQ'
                     }
-                    var tab3board = Chessboard('tab3board', pawnScheme);
+                    var tab3board = Chessboard('tab3board', scheme);
                     var boardUI = new InteractiveChess(   
                     [   ["good_outcome", "d3","e3","e4"],
                         ["bad_outcome", "ALL ELSE"]
@@ -120,24 +123,18 @@
             <div id="tab4">
                 <h2>Rooks</h2>
                 <p>
-                Rooks are one of the more powerful<br>
-                pieces in your arsenal.<br>
+                Rooks have much more available<br>
+                movement options than pawns.<br>
                 <br>
-                They are shaped like towers,<br>
-                with miniature battlements that top them.<br>
+                Rooks can move as many spaces as they'd like<br>
+                forward, backwards, left or right<br>
+                as long as nothing obstructs their movement.<br>
                 <br>
-                These pieces are locked away<br>
-                in the corners of the board.<br>
-                <br>
-                A rook in most digital formats is shown<br>
-                like the image below.<br>
-                <br>
-                <img src="img/chesspieces/wikipedia/bR.png">
             </div>
             <div id="tab5">
                 <div id="tab5boardheader">
                     <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any rook on the board</h3>
+                        <h3>Click on any space the black rook can move to</h3>
                     </div>
                 <div id="tab5board" style="width: 400px"></div>
                 <div class="InteractiveChess" id="tab5boardfeedback" style="background-color:lightgray;">
@@ -147,9 +144,10 @@
                     </div>
                 </div>
                 <script>
-                    var tab5board = Chessboard('tab5board', 'start');
+                    var tab5board = Chessboard('tab5board', scheme);
                     var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "a1","h1","a8","h8"],
+                    [   ["good_outcome", "d1","d2","d4","d5","d6","d7","d8",
+                                            "a3","b3","c3","e3","f3","g3","h3"],
                         ["bad_outcome", "ALL ELSE"]
                     ],
                     [],
@@ -163,19 +161,17 @@
             <div id="tab6">
                 <h2>Knights</h2>
                 <p>
-                Knights are a more modest<br>
-                piece in your arsenal.<br>
+                Knights have one of the strangest<br>
+                movement patterns.<br>
                 <br>
-                They are shaped like horses,<br>
-                rather than knights in shining armor.<br>
+                The knight can move in a L shape,<br>
+                two squares in one direction<br>
+                and another square at a right angle<br>
+                to the starting direction.<br>
                 <br>
-                These pieces are inward from the rooks<br>
-                on the top and bottom edges of the board.<br>
+                Knights can also jump over pieces,<br>
+                and cannot be boxed in.<br>
                 <br>
-                A knight in most digital formats is shown<br>
-                like the image below.<br>
-                <br>
-                <img src="img/chesspieces/wikipedia/bN.png">
             </div>
             <div id="tab7">
                 <div id="tab7boardheader">

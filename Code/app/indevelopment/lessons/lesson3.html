@@ -103,7 +103,7 @@
                         d3: 'bR',
                         e2: 'wP',
                         e1: 'wK',
-                        e8: 'bK',
+                        b8: 'bK',
                         g8: 'wB',
                         h5: 'bQ'
                     }
@@ -176,7 +176,7 @@
             <div id="tab7">
                 <div id="tab7boardheader">
                     <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any knight on the board</h3>
+                        <h3>Click on any space the black knight can move to</h3>
                     </div>
                 <div id="tab7board" style="width: 400px"></div>
                 <div class="InteractiveChess" id="tab7boardfeedback" style="background-color:lightgray;">
@@ -186,9 +186,9 @@
                     </div>
                 </div>
                 <script>
-                    var tab7board = Chessboard('tab7board', 'start');
+                    var tab7board = Chessboard('tab7board', scheme);
                     var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "b1","g1","b8","g8"],
+                    [   ["good_outcome", "b8","d8","e7","e5","d4","b4","a5","a7"],
                         ["bad_outcome", "ALL ELSE"]
                     ],
                     [],
@@ -202,24 +202,22 @@
             <div id="tab8">
                 <h2>Bishops</h2>
                 <p>
-                Bishops are another moderately powerful<br>
-                piece in your arsenal.<br>
+                Bishops have a similarly flexible<br>
+                movement pattern to rooks.<br>
                 <br>
-                They are shaped like a taller build of pawns,<br>
-                with a slit on their face marking their expression.<br>
+                Whereas rooks move along the straight lines of the board,<br>
+                bishops move along the diagonals of the board.<br>
                 <br>
-                These pieces are inward one from the knights<br>
-                on the top and bottom edges of the board.<br>
+                This also means that a bishop<br>
+                will always remain on squares that<br>
+                are the same color as the one<br>
+                they start out on.<br>
                 <br>
-                A bishop in most digital formats is shown<br>
-                like the image below.<br>
-                <br>
-                <img src="img/chesspieces/wikipedia/bB.png">
             </div>
             <div id="tab9">
                 <div id="tab9boardheader">
                     <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any bishop on the board</h3>
+                        <h3>Click on any space the white bishop can move to</h3>
                     </div>
                 <div id="tab9board" style="width: 400px"></div>
                 <div class="InteractiveChess" id="tab9boardfeedback" style="background-color:lightgray;">
@@ -229,9 +227,9 @@
                     </div>
                 </div>
                 <script>
-                    var tab9board = Chessboard('tab9board', 'start');
+                    var tab9board = Chessboard('tab9board', scheme);
                     var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "c1","f1","c8","f8"],
+                    [   ["good_outcome", "h7","f7","e6","d5","c4","b3","a2"],
                         ["bad_outcome", "ALL ELSE"]
                     ],
                     [],
@@ -245,25 +243,21 @@
             <div id="tab10">
                 <h2>Queens</h2>
                 <p>
-                Your queen is your single most powerful<br>
-                piece in your arsenal.<br>
+                The Queen's place as the most powerful<br>
+                piece in your arsenal comes from<br>
+                her versatile movement options.
                 <br>
-                She has a crown atop her head,<br>
-                but unlike the King's crown hers has no cross.<br>
+                She has the combined movement<br>
+                of a rook and a bishop:<br>
+                any square on a straight line or diagonal<br>
+                she can reach as long as it is not<br>
+                obstructed by another piece.<br>
                 <br>
-                She sits on the edge of the D file,<br>
-                so that when the board is set up<br>
-                she sits on her own color.<br>
-                <br>
-                A queen in most digital formats is shown<br>
-                like the image below.<br>
-                <br>
-                <img src="img/chesspieces/wikipedia/bQ.png">
             </div>
             <div id="tab11">
                 <div id="tab11boardheader">
                     <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on either queen on the board</h3>
+                        <h3>Click on any space the black queen can move to</h3>
                     </div>
                 <div id="tab11board" style="width: 400px"></div>
                 <div class="InteractiveChess" id="tab11boardfeedback" style="background-color:lightgray;">
@@ -273,9 +267,11 @@
                     </div>
                 </div>
                 <script>
-                    var tab11board = Chessboard('tab11board', 'start');
+                    var tab11board = Chessboard('tab11board', scheme);
                     var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "d1","d8"],
+                    [   ["good_outcome", "h1","h2","h3","h4","h6","h7","h8",
+                                         "a5","b5","c5","d5","e5","f5","g5",
+                                         "e2","f3","g4","g6","f7","e8"],
                         ["bad_outcome", "ALL ELSE"]
                     ],
                     [],
@@ -289,22 +285,21 @@
             <div id="tab12">
                 <h2>The King</h2>
                 <p>
-                The King is not very powerful,<br>
-                but it is the most strategically important<br>
-                piece in your arsenal.<br>
+                The King has a very limited<br>
+                movement pattern.<br>
                 <br>
-                If your king is captured,<br>
-                you will surrender to your opponent.<br>
+                The king can move in any direction,<br>
+                but only by a single space.<br>
                 <br>
-                A king in most digital formats is shown<br>
-                like the image below.<br>
+                There are additional restrictions<br>
+                on the king's movement, but these will be discussed<br>
+                in the next lesson.<br>
                 <br>
-                <img src="img/chesspieces/wikipedia/bK.png">
             </div>
             <div id="tab13">
                 <div id="tab13boardheader">
                     <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on either king on the board</h3>
+                        <h3>Click on any space the black king can move to</h3>
                     </div>
                 <div id="tab13board" style="width: 400px"></div>
                 <div class="InteractiveChess" id="tab13boardfeedback" style="background-color:lightgray;">
@@ -314,9 +309,9 @@
                     </div>
                 </div>
                 <script>
-                    var tab13board = Chessboard('tab13board', 'start');
+                    var tab13board = Chessboard('tab13board', scheme);
                     var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "e1","e8",],
+                    [   ["good_outcome", "a8","a7","b7","c7","c8"],
                         ["bad_outcome", "ALL ELSE"]
                     ],
                     [],

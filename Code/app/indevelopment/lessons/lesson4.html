@@ -29,7 +29,7 @@
  
     <body>
         <div id="lessontitle">
-            <h1>Lesson 3: Basic Movement</h1>
+            <h1>Lesson 4: Your First Game</h1>
         </div>
         <div id="headerbuttons">
             <button onclick="previous(lessontabs)"><<|</button>
@@ -44,8 +44,8 @@
                 We're glad to have you.<br>
                 <br>
                 In this lesson, you will learn<br>
-                how to move each of the individual pieces<br>
-                available to you during the game.<br>
+                how to start a game with another person<br>
+                and how the game is won and lost.<br>
                 <br>
                 Please continue to the next page<br>
                 to start this lesson.<br>
@@ -53,24 +53,63 @@
                 </p>
             </div>
             <div id="tab1">
-                <h2>Turn Order and Taking Pieces</h2>
+                <h2>Setting up the Board</h2>
                 <p>
-                    Chess is a game played in turns,<br>
-                    where the player with the white pieces<br>
-                    moves before the player with the black pieces.<br>
+                    Throughout the lesson on the types of pieces,<br>
+                    a board set up in the starting position was used.<br>
                     <br>
-                    Each kind of piece has a set movement pattern<br>
-                    it can move relative to where it is now.<br>
-                    <br>
-                    Pieces of your own color block other pieces<br>
-                    of your color from being moved.<br>
-                    <br>
-                    Your pieces, however, can move over a piece<br>
-                    of an opponent's color to capture that piece.<br>
+                    To provide a formal instruction, however,<br>
+                    here are the basic steps to set up the board.<br>
                     <br>
                 </p>
             </div>
             <div id="tab2">
+                <h2>Setting up the Board</h2>
+                <p>
+                    <em>
+                        1. Each player has their own edge,<br>
+                        where the leftmost square should be dark<br>
+                        and the rightmost square should be light.<br>
+                        <br>
+                        2. The pawns go on the row in front of the edge.<br>
+                        <br>
+                        3. On each player's back row,<br>
+                        in order from the corners to the center is<br>
+                        rook, knight, bishop, and then king/queen.<br>
+                        <br>
+                        4. Your queen starts on her own color.<br>
+                    </em>
+                    <br>
+                </p>
+            </div>
+            <div id="tab3">
+                <div id="tab3boardheader">
+                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
+                        <h3>What pieces can the white player move right now?</h3>
+                    </div>
+                <div id="tab3board" style="width: 400px"></div>
+                <div class="InteractiveChess" id="tab3boardfeedback" style="background-color:lightgray;">
+                        <h3 id="waiting">Waiting for user input...</h3>
+                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
+                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
+                    </div>
+                </div>
+                <script>
+                    var tab3board = Chessboard('tab3board', 'start');
+                    var boardUI = new InteractiveChess(   
+                    [   ["good_outcome", "a2","b2","c2","d2","e2","f2","g2","h2",
+                                         "b1","g1"],
+                        ["bad_outcome", "ALL ELSE"]
+                    ],
+                    [],
+                    false,
+                    "",
+                    tab3board,
+                    "tab3board"
+                    );
+                </script>
+            </div>
+            <div id="tab4">
                 <h2>Pawns</h2>
                 <p>
                 Pawns have the most limited movement of any piece.<br>
@@ -85,243 +124,7 @@
                 The pawn captures forward diagonally.
                 <br>
             </div>
-            <div id="tab3">
-                <div id="tab3boardheader">
-                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any space the white pawn can move to</h3>
-                    </div>
-                <div id="tab3board" style="width: 400px"></div>
-                <div class="InteractiveChess" id="tab3boardfeedback" style="background-color:lightgray;">
-                        <h3 id="waiting">Waiting for user input...</h3>
-                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
-                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
-                    </div>
-                </div>
-                <script>
-                    var scheme = {
-                        c6: 'bN',
-                        d3: 'bR',
-                        e2: 'wP',
-                        e1: 'wK',
-                        b8: 'bK',
-                        g8: 'wB',
-                        h5: 'bQ'
-                    }
-                    var tab3board = Chessboard('tab3board', scheme);
-                    var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "d3","e3","e4"],
-                        ["bad_outcome", "ALL ELSE"]
-                    ],
-                    [],
-                    false,
-                    "",
-                    tab3board,
-                    "tab3board"
-                    );
-                </script>
-            </div>
-            <div id="tab4">
-                <h2>Rooks</h2>
-                <p>
-                Rooks have much more available<br>
-                movement options than pawns.<br>
-                <br>
-                Rooks can move as many spaces as they'd like<br>
-                forward, backwards, left or right<br>
-                as long as nothing obstructs their movement.<br>
-                <br>
-            </div>
-            <div id="tab5">
-                <div id="tab5boardheader">
-                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any space the black rook can move to</h3>
-                    </div>
-                <div id="tab5board" style="width: 400px"></div>
-                <div class="InteractiveChess" id="tab5boardfeedback" style="background-color:lightgray;">
-                        <h3 id="waiting">Waiting for user input...</h3>
-                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
-                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
-                    </div>
-                </div>
-                <script>
-                    var tab5board = Chessboard('tab5board', scheme);
-                    var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "d1","d2","d4","d5","d6","d7","d8",
-                                            "a3","b3","c3","e3","f3","g3","h3"],
-                        ["bad_outcome", "ALL ELSE"]
-                    ],
-                    [],
-                    false,
-                    "",
-                    tab5board,
-                    "tab5board"
-                    );
-                </script>
-            </div>
-            <div id="tab6">
-                <h2>Knights</h2>
-                <p>
-                Knights have one of the strangest<br>
-                movement patterns.<br>
-                <br>
-                The knight can move in a L shape,<br>
-                two squares in one direction<br>
-                and another square at a right angle<br>
-                to the starting direction.<br>
-                <br>
-                Knights can also jump over pieces,<br>
-                and cannot be boxed in.<br>
-                <br>
-            </div>
-            <div id="tab7">
-                <div id="tab7boardheader">
-                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any space the black knight can move to</h3>
-                    </div>
-                <div id="tab7board" style="width: 400px"></div>
-                <div class="InteractiveChess" id="tab7boardfeedback" style="background-color:lightgray;">
-                        <h3 id="waiting">Waiting for user input...</h3>
-                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
-                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
-                    </div>
-                </div>
-                <script>
-                    var tab7board = Chessboard('tab7board', scheme);
-                    var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "b8","d8","e7","e5","d4","b4","a5","a7"],
-                        ["bad_outcome", "ALL ELSE"]
-                    ],
-                    [],
-                    false,
-                    "",
-                    tab7board,
-                    "tab7board"
-                    );
-                </script>
-            </div>
-            <div id="tab8">
-                <h2>Bishops</h2>
-                <p>
-                Bishops have a similarly flexible<br>
-                movement pattern to rooks.<br>
-                <br>
-                Whereas rooks move along the straight lines of the board,<br>
-                bishops move along the diagonals of the board.<br>
-                <br>
-                This also means that a bishop<br>
-                will always remain on squares that<br>
-                are the same color as the one<br>
-                they start out on.<br>
-                <br>
-            </div>
-            <div id="tab9">
-                <div id="tab9boardheader">
-                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any space the white bishop can move to</h3>
-                    </div>
-                <div id="tab9board" style="width: 400px"></div>
-                <div class="InteractiveChess" id="tab9boardfeedback" style="background-color:lightgray;">
-                        <h3 id="waiting">Waiting for user input...</h3>
-                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
-                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
-                    </div>
-                </div>
-                <script>
-                    var tab9board = Chessboard('tab9board', scheme);
-                    var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "h7","f7","e6","d5","c4","b3","a2"],
-                        ["bad_outcome", "ALL ELSE"]
-                    ],
-                    [],
-                    false,
-                    "",
-                    tab9board,
-                    "tab9board"
-                    );
-                </script>
-            </div>
-            <div id="tab10">
-                <h2>Queens</h2>
-                <p>
-                The Queen's place as the most powerful<br>
-                piece in your arsenal comes from<br>
-                her versatile movement options.
-                <br>
-                She has the combined movement<br>
-                of a rook and a bishop:<br>
-                any square on a straight line or diagonal<br>
-                she can reach as long as it is not<br>
-                obstructed by another piece.<br>
-                <br>
-            </div>
-            <div id="tab11">
-                <div id="tab11boardheader">
-                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any space the black queen can move to</h3>
-                    </div>
-                <div id="tab11board" style="width: 400px"></div>
-                <div class="InteractiveChess" id="tab11boardfeedback" style="background-color:lightgray;">
-                        <h3 id="waiting">Waiting for user input...</h3>
-                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
-                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
-                    </div>
-                </div>
-                <script>
-                    var tab11board = Chessboard('tab11board', scheme);
-                    var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "h1","h2","h3","h4","h6","h7","h8",
-                                         "a5","b5","c5","d5","e5","f5","g5",
-                                         "e2","f3","g4","g6","f7","e8"],
-                        ["bad_outcome", "ALL ELSE"]
-                    ],
-                    [],
-                    false,
-                    "",
-                    tab11board,
-                    "tab11board"
-                    );
-                </script>
-            </div>
-            <div id="tab12">
-                <h2>The King</h2>
-                <p>
-                The King has a very limited<br>
-                movement pattern.<br>
-                <br>
-                The king can move in any direction,<br>
-                but only by a single space.<br>
-                <br>
-                There are additional restrictions<br>
-                on the king's movement, but these will be discussed<br>
-                in the next lesson.<br>
-                <br>
-            </div>
-            <div id="tab13">
-                <div id="tab13boardheader">
-                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Click on any space the black king can move to</h3>
-                    </div>
-                <div id="tab13board" style="width: 400px"></div>
-                <div class="InteractiveChess" id="tab13boardfeedback" style="background-color:lightgray;">
-                        <h3 id="waiting">Waiting for user input...</h3>
-                        <h3 id="good_outcome" style="color:green;">Good job!</h3>
-                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
-                    </div>
-                </div>
-                <script>
-                    var tab13board = Chessboard('tab13board', scheme);
-                    var boardUI = new InteractiveChess(   
-                    [   ["good_outcome", "a8","a7","b7","c7","c8"],
-                        ["bad_outcome", "ALL ELSE"]
-                    ],
-                    [],
-                    false,
-                    "",
-                    tab13board,
-                    "tab13board"
-                    );
-                </script>
-            </div>
+            
             <div id="tab14">
                 <h2>Lesson Complete</h2>
                 <p>

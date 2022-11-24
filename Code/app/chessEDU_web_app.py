@@ -153,7 +153,6 @@ def authenticate():
                 # Login user and render landing page
                 login_user(User)
                 session.permanent = True
-                flash("Login successful!")
                 return redirect(url_for('home'))
     # Load login page on load AND failed login
     return render_template('login.html', signup_form=user_signup_form, login_form=user_login_form, logged_in=current_user.is_authenticated)

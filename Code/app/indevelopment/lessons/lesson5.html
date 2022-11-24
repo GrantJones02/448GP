@@ -1,11 +1,11 @@
 <!--
-    file:       lesson4.html
+    file:       lesson5.html
     author:     Jack Reynolds
-    modified:   23 November 2022
+    modified:   24 November 2022
 -->
 <html> 
     <head> 
-        <title> Lesson 4 </title> 
+        <title> Lesson 5 </title> 
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,7 @@
  
     <body>
         <div id="lessontitle">
-            <h1>Lesson 4: Your First Game</h1>
+            <h1>Lesson 5: Avoiding An Early Defeat</h1>
         </div>
         <div id="headerbuttons">
             <button onclick="previous(lessontabs)"><<|</button>
@@ -44,8 +44,9 @@
                 We're glad to have you.<br>
                 <br>
                 In this lesson, you will learn<br>
-                how to start a game with another person<br>
-                and how the game is won and lost.<br>
+                how to avoid defeat to a very common<br>
+                strategy among beginners:<br>
+                the Scholar's Mate.<br>    
                 <br>
                 Please continue to the next page<br>
                 to start this lesson.<br>
@@ -53,10 +54,18 @@
                 </p>
             </div>
             <div id="tab1">
-                <h2>Setting up the Board</h2>
+                <h2>Context</h2>
                 <p>
-                    Throughout the lesson on the types of pieces,<br>
-                    a board set up in the starting position was used.<br>
+                    As discussed in the previous lesson,<br>
+                    a very common starting move is<br>
+                    to advance the King's Pawn.<br>
+                    <br>
+                    <div id="tab1board" style="width: 400px"></div>
+                    <script>
+                        var tab3board = Chessboard('tab3board', 'start');
+                        myInteractiveChess.chessBoardJS.move("e2-e4");
+                        myInteractiveChess.chessBoardJS.move("e7-e5");
+                    </script>
                     <br>
                     To provide a formal instruction, however,<br>
                     here are the basic steps to set up the board.<br>

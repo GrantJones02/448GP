@@ -9,44 +9,69 @@
 {% block javascript %}
   <script>
   //Toggles the "Invalid Login" message whenever the login_div is clicked
-    function toggle()
-    {
+    function toggle() {
       document.getElementById("invalid_login").style.display="none";
-      document.getElementById("login_div").onclick = "";
     }
   </script>
 {% endblock %}
 
 {% block login %}
   {% if logged_in %}
-  <div class="logout">
-    <button class="logoutbtn" onclick="window.location.href='/logout'">
-      Logout
-    </button>
-  </div>
+  <button id="logbtn" class="pagebtn" onclick="window.location.href='/logout'">
+    Logout
+  </button>
   {% else %}
-  <div class="login">
-    <button class="loginbtn" onclick="window.location.href='/login'">
-      Login / Sign Up
-    </button>
-  </div>
+  <button id="logbtn" class="pagebtn" onclick="window.location.href='/login'">
+    Login / Sign Up
+  </button>
   {% endif %}
 {% endblock %}
 
 {% block body %}
-  <h2 class="login-title">Portal login</h2>
-  <div id="login_div" class="login" onclick="javascript: toggle()">
-    <form id="login" method="POST">
-      {{form.csrf_token}}
-      <label> <b>User Name</b><br /><br /> </label>
-      {{form.username}}
-      <br /><br />
-      <label> <b>Password</b><br /><br /> </label>
-      {{form.password}}
-      <br /><br />
-      <input type="submit" value="Log In Here" />
-      <br /><br />
-    </form>
-    <p id="invalid_login" style="color: red; text-align: center">Invalid login</p>
+  <h2 id="login-title">Portal login</h2>
+  <div id="login-area" onclick="javascript: toggle()">
+    <div id="login-forms">
+      <div class="split">
+        <h1>Register</h1>
+        <form id="signup-form" action="{{ url_for('register') }}" method="POST">
+          {{signup_form.csrf_token}}
+          <label> <b>New Username</b><br /><br /> </label>
+          {{signup_form.new_name}}
+          <br /><br />
+          <label> <b>New Password</b><br /><br /> </label>
+          {{signup_form.new_pass}}
+          <br /><br />
+          <label> <b>Confirm Password</b><br /><br /> </label>
+          {{signup_form.confirm_pass}}
+          <br /><br />
+          {{signup_form.signup_submit}}
+          <br /><br />
+        </form>
+      </div>
+      <div class="split">
+        <h1>Login</h1>
+        <form id="login-form" action="{{ url_for('authenticate') }}" method="POST">
+          {{login_form.csrf_token}}
+          <label> <b>Username</b><br /><br /> </label>
+          {{login_form.username}}
+          <br /><br />
+          <label> <b>Password</b><br /><br /> </label>
+          {{login_form.password}}
+          <br /><br />
+          {{login_form.login_submit}}
+          <br /><br />
+        </form>
+        <p id="invalid_login" style="color: red; text-align: center">Invalid login</p>
+      </div>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+    {% endwith %}
   </div>
 {% endblock %}

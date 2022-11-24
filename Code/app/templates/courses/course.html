@@ -8,17 +8,13 @@
 
 {% block login %}
   {% if logged_in %}
-  <div class="logout">
-    <button class="logoutbtn" onclick="window.location.href='/logout'">
-      Logout
-    </button>
-  </div>
+  <button id="logbtn" class="pagebtn" onclick="window.location.href='/logout'">
+    Logout
+  </button>
   {% else %}
-  <div class="login">
-    <button class="loginbtn" onclick="window.location.href='/login'">
-      Login / Sign Up
-    </button>
-  </div>
+  <button id="logbtn" class="pagebtn" onclick="window.location.href='/login'">
+    Login / Sign Up
+  </button>
   {% endif %}
 {% endblock %}
 

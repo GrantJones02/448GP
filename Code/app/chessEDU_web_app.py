@@ -4,9 +4,9 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 ## Remove in produciton, just allows to run and access on local device
 from flask_cors import CORS
 ## Relative import for forms and objects used in the app ##
-from forms import login_form
+from forms import login_form, signup_form
 from user import User
-from credential_manager import CredentialManager
+from account_manager import AccountManager
 ## Other packegs for avrious other functionality ##
 import sqlite3
 import secrets
@@ -24,7 +24,7 @@ login_manager.login_view = 'login'
 CORS(app)
 
 # Manager objects
-cred_manager = CredentialManager()
+acnt_manager = AccountManager()
 
 '''
     function: load_user
@@ -34,7 +34,7 @@ cred_manager = CredentialManager()
 '''
 @login_manager.user_loader
 def load_user(user_id):
-    user_info = cred_manager.get_user_by_id(user_id)
+    user_info = acnt_manager.get_user_by_id(user_id)
     return(User(user_info[0], user_info[1], user_info[2], user_info[3], user_info[4]))
 
 ### Routes ###
@@ -44,7 +44,7 @@ def load_user(user_id):
  return : render template
  descr : landing page after logging in, renders home page
 '''
-@app.route('/', methods=('GET', 'POST'))
+@app.route('/', methods=["GET"])
 def home():
     # Renders landing page on initial load
     return render_template("base.html", logged_in=current_user.is_authenticated)
@@ -52,18 +52,99 @@ def home():
 '''
     function : login
     param : none
-    return : renders either landing page or login page depending upon login status
+    return : renders either landing page if user is authenticated, otherwise loads the register or authenticated routes based on submitted form
     descr. : Connects with SQLite3 DB for the app and validates user login
 '''
-@app.route('/login', methods=("GET", "POST"))
+@app.route('/login', methods=["GET"])
 def login():
+    user_signup_form = signup_form()
+    user_login_form = login_form()
     # Session management feature : loads landing page if user is already logged in
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    # Form from forms file
+    # Load login page on load AND failed login
+    return render_template('login.html', signup_form=user_signup_form, login_form=user_login_form, logged_in=current_user.is_authenticated)
+
+'''
+    function : register
+    param : none
+    return : renders the login page or redirects to home if user is already logged in or successfully registers
+    descr. : Connects with SQLite3 DB for the app and validates user sign up
+'''
+@app.route('/register', methods=["POST"])
+def register():
+    user_signup_form = signup_form()
     user_login_form = login_form()
+    if user_signup_form.validate_on_submit():
+        print("In signup validate")
+        if user_signup_form.new_name.data != "" and user_signup_form.new_name.data != None:
+            print("new username is not none")
+            if user_signup_form.new_pass.data == user_signup_form.confirm_pass.data:
+                print("passwords match")
+                if len(user_signup_form.new_pass.data) >= 12:
+                    print("password >= 12")
+                    uppers, lowers, specials, digits = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz", "!@#$%^&*", "0123456789"
+                    u, l, s, d = 0, 0, 0, 0
+                    for char in user_signup_form.new_pass.data:
+                        if char in uppers:
+                            u += 1
+                        if char in lowers:
+                            l += 1
+                        if char in specials:
+                            s += 1
+                        if char in digits:
+                            d += 1
+                    if u >= 1 and l >= 1 and s >= 1 and d >= 1 and u+l+s+d==len(user_signup_form.new_pass.data):
+                        print("strong password")
+                        new_user = {
+                            "new_username": user_signup_form.new_name.data,
+                            "new_password": user_signup_form.new_pass.data,
+                            "role": 1
+                        }
+                        try:
+                            print("creating user")
+                            acnt_manager.create_new_user(new_user)
+                            flash("Signup successful! Attempting first login...")
+                        except Exception as e:
+                            print(e)
+                            flash("An error occurred while attempting to create your account.")
+                    else:
+                        flash("Password must contain at least one lowercase letter, uppercase letter, number, and special character (!@#$%^&*)!")
+                else:
+                    flash("Password must be at least 12 characters long!")
+            else:
+                flash("Passwords entered must match!")
+        else:
+            flash("Username cannot be blank!")
+        user_details = acnt_manager.get_details_by_username(user_signup_form.new_name.data)
+        if user_details is not None:
+            # Creates user (returned from load_user)
+            User = load_user(user_details[0])
+            # Checks if the entered data matches the db data
+            if user_signup_form.new_name.data == User.username and user_signup_form.new_pass.data == User.password:
+                # Login user and render landing page
+                login_user(User)
+                session.permanent = True
+                flash("Login successful!")
+                return redirect(url_for('home'))
+    # Load login page on load AND failed login
+    return render_template('login.html', signup_form=user_signup_form, login_form=user_login_form, logged_in=current_user.is_authenticated)
+
+'''
+    function : authenticate
+    param : none
+    return : renders the login page or redirects to home if user is already logged in or successfully logs in
+    descr. : Connects with SQLite3 DB for the app and validates user login
+'''
+@app.route('/authenticate', methods=["POST"])
+def authenticate():
+    user_signup_form = signup_form()
+    user_login_form = login_form()
+    # Session management feature : loads landing page if user is already logged in
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     if user_login_form.validate_on_submit():
-        user_details = cred_manager.get_details_by_username(user_login_form.username.data)
+        user_details = acnt_manager.get_details_by_username(user_login_form.username.data)
         if user_details is not None:
             # Creates user (returned from load_user)
             User = load_user(user_details[0])
@@ -75,7 +156,7 @@ def login():
                 flash("Login successful!")
                 return redirect(url_for('home'))
     # Load login page on load AND failed login
-    return render_template('login.html', form=user_login_form, logged_in=current_user.is_authenticated)
+    return render_template('login.html', signup_form=user_signup_form, login_form=user_login_form, logged_in=current_user.is_authenticated)
 
 '''
     function : logout
@@ -96,9 +177,9 @@ def logout():
     descr. : Directs the user to a page that lists available courses.
     Login required
 '''
-@app.route('/course', methods=('GET', 'POST'))
+@app.route('/catalog', methods=('GET', 'POST'))
 def courses():
-    return render_template("course.html", logged_in=current_user.is_authenticated)
+    return render_template("catalog.html", logged_in=current_user.is_authenticated)
 
 '''
     function : board
@@ -120,7 +201,7 @@ def board():
 '''
 @app.route('/account', methods=('GET', 'POST'))
 def account():
-    return render_template("page_template.html", logged_in=current_user.is_authenticated)
+    return render_template("account.html", logged_in=current_user.is_authenticated)
 
 # '''
 #     function : admin
@@ -136,10 +217,10 @@ def account():
 #         return redirect(url_for('unauthorized'))
 #     else:
 #         if request.method == "GET":
-#             return render_template("admin.html", userData=cred_manager.admin_user_data())
+#             return render_template("admin.html", userData=acnt_manager.admin_user_data())
 #         elif request.method == "POST":
 #             # Do something
-#             return render_template("admin.html", userData=cred_manager.admin_user_data())
+#             return render_template("admin.html", userData=acnt_manager.admin_user_data())
 #         else:
 #             return redirect(url_for('home'))
 
@@ -154,8 +235,6 @@ def account():
 @login_required
 def unauthorized():
     return render_template("unauth.html")
-
-
 
 ### Private functions ###
 # '''

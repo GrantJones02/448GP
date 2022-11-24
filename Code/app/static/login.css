@@ -1,19 +1,33 @@
-.login-title {
+#login-title {
   text-align: center;
   padding: 2px;
   margin: 15px 0;
 }
 
-.login {
-  width: 250px;
+#login-area {
+  width: 30%;
   overflow: hidden;
   margin: auto;
   padding: 80px;
   background: #d3d3d3;
   border-radius: 15px;
-  box-sizing: content-box;
 }
 
-#login {
+#login-forms {
+  padding: 10px;
+  border: 3px solid green;
+  overflow: hidden;
+}
+
+.split {
+  width: 50%;
+  float: left;
+}
+
+#signup-form, #login-form {
+  text-align: center;
+}
+
+h1 {
   text-align: center;
 }

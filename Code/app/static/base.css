@@ -18,11 +18,7 @@ body {
   text-decoration: none;
 }
 
-.pagebtn,
-.dropdown,
-.dropbtn,
-.logoutbtn,
-.loginbtn {
+.pagebtn {
   cursor: pointer;
   font-size: 16px;
   border: none;
@@ -34,19 +30,17 @@ body {
   margin: 0;
 }
 
+#logbtn {
+  float: right;
+  overflow: hidden;
+}
+
 .pagebtn:hover,
-.dropbtn:hover,
-.dropdown-content a:hover {
+.logbtn:hover,
+a:hover {
   background-color: lightblue;
 }
 
-.logout,
-.login {
-  float: right;
-  overflow: hidden;
-  color: white;
-}
-
-.show {
-  display: block;
+.page-buttons {
+  display: inline-block;
 }

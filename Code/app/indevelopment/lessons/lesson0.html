@@ -1,0 +1,93 @@
+<!--
+    file:       lesson0.html
+    author:     Jack Reynolds
+    modified:   6 November 2022
+    desc:       The following file is a pure HTML model
+                for ChessEDU lessons.
+-->
+<html> 
+<!--
+    This head includes the title of the page
+    and a link to the .css file associated with this page.
+--> <head> 
+        <title> Lesson 0 </title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+        Scripts for HTML Tabs element
+    --> <script src="original_js/Tabs.js"></script>
+
+    <!--
+        Scripts for HTML ClickableImage element
+    --> <script src="original_js/ClickableImage.js"></script>
+    <link href="original_css/lessonUI.css" rel="stylesheet" type="text/css"/>
+
+    <!-- 
+        Scripts for HTML InteractiveChess element
+    --> <script src="js/chessboard-1.0.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
+        <script src="original_js/InteractiveChess.js"></script>
+
+    </head>
+<!--
+    This body includes a sample three-tab menu,
+    divided with <div> elements into functional sections.
+--> <body>
+    <!--
+        The lessontitle section is just a <div> element
+        that contains the heading for the lesson.
+    --> <div id="lessontitle">
+            <h1>Sample Lesson Title</h1>
+        </div> 
+    <!--
+        The headerbuttons section includes the top set
+        of buttons use to progress the page left and right.
+        they call the functions previous() and next()
+        from the script interactive_tabs.js.
+        The passed value is the instance of Tabs,
+        a class defined in interactive_tabs.js,
+        that is declared in the <script> below.
+        Included is also the Lesson Home button,
+        that returns to the main course page.
+    --> <div id="headerbuttons">
+            <button onclick="previous(lessontabs)"><<|</button>
+            <button onclick="next(lessontabs)">|>></button>
+            <button onclick="window.location.href='index.html';">Lesson Home</button>
+        </div>
+    <!--
+        The lessontabs section includes all of the tabs within each lesson.
+        To add content to a tab, put it inside the <div> elements with id = "tabN".
+        These div elements will be hidden, which will hide all of the contents inside of them.
+    --> <div id="lessontabs">
+            <div id="tab0">
+                <h2>Sample Text 0</h2>
+                <p>Sample Text 0</p>
+            </div>
+            <div id="tab1">
+                <h2>Sample Text 1</h2>
+                <p>Sample Text 1</p>
+            </div>
+            <div id="tab2">
+                <h2>Sample Text 2</h2>
+                <p>Sample Text 2</p>
+            </div>
+        </div>
+    <!--
+        The footerbuttons section is identical to the headerbuttons section in function.
+    --> <div id="footerbuttons">
+            <button onclick="previous(lessontabs)"><<|</button>
+            <button onclick="next(lessontabs)">|>></button>
+            <button onclick="window.location.href='index.html';">Lesson Home</button>
+        </div>
+    <!--
+        In our self-contained script below,
+        we create an instance of Tabs on the div section "lessontabs".
+        The class constructor automatically hides the all tabs except the first. 
+    --> <script>
+            const lessontabs = new Tabs('lessontabs');
+        </script> 
+    </body> 
+</html>

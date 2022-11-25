@@ -24,7 +24,7 @@ login_manager.login_view = 'login'
 CORS(app)
 
 # Manager objects
-acnt_manager = AccountManager()
+account_manager = AccountManager()
 
 '''
     function: load_user
@@ -34,7 +34,7 @@ acnt_manager = AccountManager()
 '''
 @login_manager.user_loader
 def load_user(user_id):
-    user_info = acnt_manager.get_user_by_id(user_id)
+    user_info = account_manager.get_user_by_id(user_id)
     return(User(user_info[0], user_info[1], user_info[2], user_info[3], user_info[4]))
 
 ### Routes ###
@@ -103,7 +103,7 @@ def register():
                         }
                         try:
                             print("creating user")
-                            acnt_manager.create_new_user(new_user)
+                            account_manager.create_new_user(new_user)
                             flash("Signup successful! Attempting first login...")
                         except Exception as e:
                             print(e)
@@ -116,7 +116,7 @@ def register():
                 flash("Passwords entered must match!")
         else:
             flash("Username cannot be blank!")
-        user_details = acnt_manager.get_details_by_username(user_signup_form.new_name.data)
+        user_details = account_manager.get_details_by_username(user_signup_form.new_name.data)
         if user_details is not None:
             # Creates user (returned from load_user)
             User = load_user(user_details[0])
@@ -144,7 +144,7 @@ def authenticate():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     if user_login_form.validate_on_submit():
-        user_details = acnt_manager.get_details_by_username(user_login_form.username.data)
+        user_details = account_manager.get_details_by_username(user_login_form.username.data)
         if user_details is not None:
             # Creates user (returned from load_user)
             User = load_user(user_details[0])
@@ -164,43 +164,52 @@ def authenticate():
     descr. : Uses flask_login.logout_user() to end session
 '''
 @app.route('/logout', methods=('GET', 'POST'))
-@login_required
 def logout():
-    logout_user()
-    return redirect(url_for("login"))
-
-'''
-    function : courses
-    params : None
-    return : Renders the courses page
-    descr. : Directs the user to a page that lists available courses.
-    Login required
-'''
-@app.route('/catalog', methods=('GET', 'POST'))
-def courses():
-    return render_template("catalog.html", logged_in=current_user.is_authenticated)
-
-'''
-    function : board
-    params : None
-    return : Renders the board page
-    descr. : Directs the user to a interactive chessboard page.
-    Login required
-'''
-@app.route('/board', methods=('GET', 'POST'))
-def board():
-    return render_template("board.html", logged_in=current_user.is_authenticated)
+    if current_user.is_authenticated:
+        logout_user()
+    return redirect(url_for('home'))
 
 '''
     function : account
     params : None
     return : Renders the board page
     descr. : Directs the user to a page with their account information displayed.
-    Login required
 '''
 @app.route('/account', methods=('GET', 'POST'))
 def account():
-    return render_template("account.html", logged_in=current_user.is_authenticated)
+    if current_user.is_authenticated:
+        return render_template("account.html", logged_in=current_user.is_authenticated)
+    return redirect(url_for('home'))
+
+'''
+    function : catalog
+    params : None
+    return : Renders the course catalog page
+    descr. : Directs the user to a page that lists available courses.
+'''
+@app.route('/catalog', methods=('GET', 'POST'))
+def catalog():
+    return render_template("catalog.html", logged_in=current_user.is_authenticated)
+
+'''
+    function : course
+    params : id
+    return : Renders the directed course's page
+    descr. : Directs the user to the page they navigated to.
+'''
+@app.route('/course/<page>', methods=['GET'])
+def course(page):
+    return render_template(f"courses/{page}.html", logged_in=current_user.is_authenticated)
+
+'''
+    function : board
+    params : None
+    return : Renders the board page
+    descr. : Directs the user to a interactive chessboard page.
+'''
+@app.route('/board', methods=('GET', 'POST'))
+def board():
+    return render_template("board.html", logged_in=current_user.is_authenticated)
 
 # '''
 #     function : admin
@@ -216,24 +225,12 @@ def account():
 #         return redirect(url_for('unauthorized'))
 #     else:
 #         if request.method == "GET":
-#             return render_template("admin.html", userData=acnt_manager.admin_user_data())
+#             return render_template("admin.html", userData=account_manager.admin_user_data())
 #         elif request.method == "POST":
 #             # Do something
-#             return render_template("admin.html", userData=acnt_manager.admin_user_data())
+#             return render_template("admin.html", userData=account_manager.admin_user_data())
 #         else:
 #             return redirect(url_for('home'))
-
-'''
-    function : unauthorized
-    param : none
-    return : Renders the unauthorized page
-    descr. : Redirects a user to this page when they attempt to access pages without required permissions.
-    Login required
-'''
-@app.route('/unauthorized', methods=('GET', 'POST'))
-@login_required
-def unauthorized():
-    return render_template("unauth.html")
 
 ### Private functions ###
 # '''

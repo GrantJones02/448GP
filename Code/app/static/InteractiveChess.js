@@ -6,9 +6,11 @@
 // It seems to be going well
 
 class InteractiveChess {
-    constructor(inputOutcomes, inputPieces, inputAllowPieceMovement, inputPieceToMove, inputChessBoardJS) {
+    constructor(inputOutcomes, inputPieces, inputAllowPieceMovement, inputPieceToMove, inputChessBoardJS, inputName) {
 
 // INITIAL ATTRIBUTES TO SET
+this.name = inputName;
+
 this.outcomeBoard = [
     ['','','','','','','',''],
     ['','','','','','','',''],
@@ -39,9 +41,11 @@ this.allowPieceMovement = inputAllowPieceMovement;
 
 this.chessBoardJS = inputChessBoardJS;
 
+this.feedbackPath = inputName + "feedback";
+
 // INITIAL FUNCTIONS TO RUN
 initializeUI(this);
-showTextFeedback("waiting");
+showTextFeedback(this, "waiting");
     }
 }
 
@@ -125,8 +129,9 @@ function initializeUI(myInteractiveChess)
 
 function makeChessSquaresClickable(myInteractiveChess)
 {
+    let squaresSection = document.getElementById(myInteractiveChess.name);
     //the CSS class all the squares have
-    let squares = document.getElementsByClassName("square-55d63");
+    let squares = squaresSection.getElementsByClassName("square-55d63");
     for(let i = 0; i < 64; i++)
     {
         let dataSquare = squares[i].getAttribute("data-square");
@@ -223,13 +228,13 @@ function checkSquare(myInteractiveChess, dataSquare)
     let col = coords[1];
     
     outcomeToDisplay = myInteractiveChess.outcomeBoard[row][col];
-    showTextFeedback(outcomeToDisplay);
-    showPieceMove(myInteractiveChess, dataSquare);
+    showTextFeedback(myInteractiveChess, outcomeToDisplay);
+    showPieceMove(myInteractiveChess, dataSquare, outcomeToDisplay);
 }
 
-function showTextFeedback(outcomeToDisplay)
+function showTextFeedback(myInteractiveChess, outcomeToDisplay)
 {
-    let outcomes = document.getElementById("feedback");
+    let outcomes = document.getElementById(myInteractiveChess.feedbackPath);
     for(let i = 0; i < outcomes.children.length; i++)
     {
         if(outcomes.children[i].id == outcomeToDisplay)
@@ -243,13 +248,13 @@ function showTextFeedback(outcomeToDisplay)
     }
 }
 
-function showPieceMove(myInteractiveChess, dataSquare)
+function showPieceMove(myInteractiveChess, dataSquare, outcomeToDisplay)
 {
     let currentPosition = '';
     let coords = toArrayFormat(dataSquare);
     let row = coords[0];
     let col = coords[1];
-    if(myInteractiveChess.allowPieceMovement)
+    if(myInteractiveChess.allowPieceMovement && outcomeToDisplay != "invalid")
     {
         for(let i = 0; i < 8; i++)
         {
@@ -263,7 +268,7 @@ function showPieceMove(myInteractiveChess, dataSquare)
             }
         }
         myInteractiveChess.piecesBoard[row][col] = myInteractiveChess.pieceToMove;
+        let moveFEN = currentPosition + "-" + dataSquare;
+        myInteractiveChess.chessBoardJS.move(moveFEN);
     }
-    let moveFEN = currentPosition + "-" + dataSquare;
-    myInteractiveChess.chessBoardJS.move(moveFEN);
 }

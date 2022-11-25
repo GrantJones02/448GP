@@ -1,0 +1,337 @@
+<!--
+    file:       lesson5.html
+    author:     Jack Reynolds
+    modified:   24 November 2022
+-->
+{% extends "base.html" %}
+
+{% block title %}Lesson 2{% endblock %}
+{% block header %}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="../static/lessonUI.css" rel="stylesheet" type="text/css"/>
+  <!--Scripts for HTML Tabs element-->
+  <script src="../../static/Tabs.js"></script>
+  <!--Scripts for HTML ClickableImage element-->
+  <script src="../../static/ClickableImage.js"></script>
+  <link href="../../static/lessonUI.css" rel="stylesheet" type="text/css"/>
+  <!--Scripts for HTML InteractiveChess element-->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="../../static/chessboard-1.0.0.min.js"></script>
+  <link rel="stylesheet" href="../../static/chessboard-1.0.0.min.css">
+  <script src="../../static/InteractiveChess.js"></script>
+{% endblock %}
+
+{% block login %}
+  {% if logged_in %}
+  <button id="logbtn" class="pagebtn" onclick="window.location.href='/logout'">
+    Logout
+  </button>
+  {% else %}
+  <button id="logbtn" class="pagebtn" onclick="window.location.href='/login'">
+    Login / Sign Up
+  </button>
+  {% endif %}
+{% endblock %}
+
+{% block body %}
+  <div id="lessontitle">
+      <h1>Lesson 5: Avoiding An Early Defeat</h1>
+  </div>
+  <div id="headerbuttons">
+      <button onclick="previous(lessontabs)"><<|</button>
+      <button onclick="next(lessontabs)">|>></button>
+      <button onclick="window.location.href='/catalog';">Lesson Home</button>
+  </div>
+  <div id="lessontabs">
+      <div id="tab0">
+          <h2>Lesson Introduction</h2>
+          <p>
+          Welcome again to ChessEDU!<br>
+          We're glad to have you.<br>
+          <br>
+          In this lesson, you will learn<br>
+          how to avoid defeat to a very common<br>
+          strategy among beginners:<br>
+          the Scholar's Mate.<br>
+          <br>
+          Please continue to the next page<br>
+          to start this lesson.<br>
+          <br>
+          </p>
+      </div>
+      <div id="tab1">
+          <h2>Context</h2>
+          <p>
+              As discussed in the previous lesson,<br>
+              a very common starting move for both players<br>
+              is to advance the King's Pawn.<br>
+              <br>
+              <div id="tab1board" style="width: 300px"></div>
+              <script>
+                  var tab1board = Chessboard('tab1board', 'start');
+                  tab1board.move("e2-e4");
+                  tab1board.move("e7-e5");
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab2">
+          <h2>The Wayward Queen Attack</h2>
+          <p>
+              In games between beginners,<br>
+              a common offensive line for White<br>
+              is the <i>Wayward Queen Attack</i>.<br>
+              <br>
+              <div id="tab2board" style="width: 300px"></div>
+              <script>
+                  var tab2board = Chessboard('tab2board', 'start');
+                  tab2board.move("e2-e4");
+                  tab2board.move("e7-e5");
+                  tab2board.move("d1-h5");
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab3">
+          <h2>The Wayward Queen Attack</h2>
+          <p>
+              In this position, it is <b>very easy</b> for a beginner<br>
+              playing Black to mess up badly.<br>
+              Take this common response:<br>
+              <!--
+                  When I say common, I mean common here.
+
+                  I had this lesson open to the previous tab,
+                  and my brother looked over at my screen.
+                  He responded, "That's a terrible queen move,
+                  you can just block with that pawn!"
+              -->
+              <br>
+              <div id="tab3board" style="width: 300px"></div>
+              <script>
+                  var tab3board = Chessboard('tab3board', 'start');
+                  tab3board.move("e2-e4");
+                  tab3board.move("e7-e5");
+                  tab3board.move("d1-h5");
+                  tab3board.move("g7-g6");
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab4">
+          <h2>The Wayward Queen Attack</h2>
+          <p>
+              This mistake, even with good play after,<br>
+              leads to Black being down a rook at minimum,<br>
+              with White's queen now embedded in Black's defenses.<br>
+              <br>
+              <div id="tab4board" style="width: 300px"></div>
+              <script>
+                  var tab4board = Chessboard('tab4board', 'start');
+                  tab4board.move("e2-e4");
+                  tab4board.move("e7-e5");
+                  tab4board.move("d1-h5");
+                  tab4board.move("g7-g6");
+                  tab4board.move("h5-e5");
+                  tab4board.move("g8-e7");
+                  tab4board.move("e5-h8");
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab5">
+          <h2>The Wayward Queen Attack</h2>
+          <p>
+              With White playing their queen so early, Black has to pull out defensive moves<br>
+              that neutralize the queen without creating additional danger.<br>
+              This move is a better response.<br>
+              <br>
+              <div id="tab5board" style="width: 300px"></div>
+              <script>
+                  var tab5board = Chessboard('tab5board', 'start');
+                  tab5board.move("e2-e4");
+                  tab5board.move("e7-e5");
+                  tab5board.move("d1-h5");
+                  tab5board.move("b8-c6");
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab6">
+          <h2>The Scholar's Mate</h2>
+          <p>
+              A harder line to spot is the line that<br>
+              White often sets up in this position:<br>
+              the <i>Scholar's Mate</i>.<br>
+              <br>
+              <div id="tab6board" style="width: 300px"></div>
+              <script>
+                  var tab6board = Chessboard('tab6board', 'start');
+                  tab6board.move("e2-e4");
+                  tab6board.move("e7-e5");
+                  tab6board.move("d1-h5");
+                  tab6board.move("b8-c6");
+                  tab6board.move("f1-c4");
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab7">
+          <h2>The Scholar's Mate</h2>
+          <p>
+              It is one of the fastest checkmates in the game.<br>
+              The goal is to apply pressure to the pawn<br>
+              in front of the Black King's Bishop.<br>
+              <br>
+              <div id="tab7board" style="width: 300px"></div>
+              <script>
+                  var tab7board = Chessboard('tab7board', 'start');
+                  tab7board.move("e2-e4");
+                  tab7board.move("e7-e5");
+                  tab7board.move("d1-h5");
+                  tab7board.move("b8-c6");
+                  tab7board.move("f1-c4");
+
+                  //Highlight a square
+                  let board7DOM = document.getElementById("tab7board");
+                  let squares7DOM = board7DOM.getElementsByClassName("square-55d63");
+                  squares7DOM[13].style.backgroundColor = "red";
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab8">
+          <h2>The Scholar's Mate</h2>
+          <p>
+              If Black does not make the right move,<br>
+              White can capture this pawn with their Queen,<br>
+              which can not Black's King cannot escape or capture.<br>
+              <br>
+              <div id="tab8board" style="width: 300px"></div>
+              <script>
+                  var tab8board = Chessboard('tab8board', 'start');
+                  tab8board.move("e2-e4");
+                  tab8board.move("e7-e5");
+                  tab8board.move("d1-h5");
+                  tab8board.move("b8-c6");
+                  tab8board.move("f1-c4");
+                  tab8board.move("g8-f6");
+                  tab8board.move("h5-f7");
+                  //Highlight a square
+                  let board8DOM = document.getElementById("tab8board");
+                  let squares8DOM = board8DOM.getElementsByClassName("square-55d63");
+                  squares8DOM[13].style.backgroundColor = "red";
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab9">
+          <div id="tab9boardheader">
+              <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
+                  <h3>Find a black piece that can stop checkmate</h3>
+              </div>
+          <div id="tab9board" style="width: 400px"></div>
+          <div class="InteractiveChess" id="tab9boardfeedback" style="background-color:lightgray;">
+                  <h3 id="waiting">Waiting for user input...</h3>
+                  <h3 id="great_outcome" style="color:green;">This is the best piece to use!</h3>
+                  <h3 id="good_outcome" style="color:orange;">This piece works, but can you find a better one?</h3>
+                  <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
+                  <h3 id="invalid" style="color:purple;">This is not one of Black's pieces.</h3>
+              </div>
+          </div>
+          <script>
+              var tab9board = Chessboard('tab9board', 'start');
+                  tab9board.move("e2-e4");
+                  tab9board.move("e7-e5");
+                  tab9board.move("d1-h5");
+                  tab9board.move("b8-c6");
+                  tab9board.move("f1-c4");
+              var boardUI = new InteractiveChess(
+              [   ["great_outcome", "g7"],
+                  ["good_outcome", "d8","d7"],
+                  ["bad_outcome", "a8","c8","e8","f8","g8","h8",
+                                  "a7","b7","c7","f7","h7",
+                                  "c6",
+                                  "e5"],
+                  ["invalid", "ALL ELSE"]
+              ],
+              [],
+              false,
+              "",
+              tab9board,
+              "tab9board"
+              );
+          </script>
+      </div>
+      <div id="tab10">
+          <h2>Beating The Scholar's Mate</h2>
+          <p>
+              The move by Black shown is the best move to play<br>
+              to eliminate the immediate threat of Checkmate.<br>
+              White can reapply the threat, however.<br>
+              <br>
+              <div id="tab10board" style="width: 300px"></div>
+              <script>
+                  var tab10board = Chessboard('tab10board', 'start');
+                  tab10board.move("e2-e4");
+                  tab10board.move("e7-e5");
+                  tab10board.move("d1-h5");
+                  tab10board.move("b8-c6");
+                  tab10board.move("f1-c4");
+                  tab10board.move("g7-g6");
+
+                  let board10DOM = document.getElementById("tab10board");
+                  let squares10DOM = board10DOM.getElementsByClassName("square-55d63");
+                  squares10DOM[13].style.backgroundColor = "red";
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab11">
+          <h2>Beating The Scholar's Mate</h2>
+          <p>
+              If White is insistent,<br>
+              the Black can pull out their second knight.<br>
+              Black now has a solid defensive position.<br>
+              <br>
+              <div id="tab11board" style="width: 300px"></div>
+              <script>
+                  var tab11board = Chessboard('tab11board', 'start');
+                  tab11board.move("e2-e4");
+                  tab11board.move("e7-e5");
+                  tab11board.move("d1-h5");
+                  tab11board.move("b8-c6");
+                  tab11board.move("f1-c4");
+                  tab11board.move("g7-g6");
+                  tab11board.move("h5-f3");
+                  tab11board.move("g8-f6");
+
+                  let board11DOM = document.getElementById("tab11board");
+                  let squares11DOM = board11DOM.getElementsByClassName("square-55d63");
+                  squares11DOM[13].style.backgroundColor = "red";
+              </script>
+              <br>
+          </p>
+      </div>
+      <div id="tab12">
+          <h2>Lesson Complete</h2>
+          <p>
+          You have completed this lesson!<br>
+          To progress to the next lesson, click the "Lesson Home" button<br>
+          or use the button below to return to the lesson select page.<br>
+          <br>
+          <button onclick="window.location.href='/catalog';">Complete Lesson</button>
+          <br>
+          To restart this lesson, hit the next button again.<br>
+          </p>
+      </div>
+  </div>
+  <div id="footerbuttons">
+      <button onclick="previous(lessontabs)"><<|</button>
+      <button onclick="next(lessontabs)">|>></button>
+      <button onclick="window.location.href='/catalog';">Lesson Home</button>
+  </div>
+  <script>
+      const lessontabs = new Tabs('lessontabs');
+  </script>
+{% endblock %}

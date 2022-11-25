@@ -1,7 +1,7 @@
 <!--
     file:       lesson6.html
     author:     Jack Reynolds
-    modified:   24 November 2022
+    modified:   25 November 2022
 -->
 <html> 
     <head> 
@@ -55,8 +55,8 @@
             <div id="tab1">
                 <h2>Context</h2>
                 <p>
-                    In the previous lesson, terminology like<br>
-                    <i>threatening</i> and <i>defending</i><br>
+                    In the previous lesson, terminology<br>
+                    like <i>threatening</i> and <i>defending</i><br>
                     was used to describe the interactions<br>
                     between certain pieces on the board.<br>
                     <br>
@@ -104,232 +104,182 @@
                 <p>
                     In chess, a <i>trade</i><br>
                     is an interaction between two pieces<br>
-                    where you give up something of some value<br>
-                    
-                </p>
-            </div>
-            <div id="tab3">
-                <h2>The Wayward Queen Attack</h2>
-                <p>
-                    In this position, it is <b>very easy</b> for a beginner<br>
-                    playing Black to mess up badly.<br>
-                    Take this common response:<br>
-                    <!--
-                        When I say common, I mean common here.
-
-                        I had this lesson open to the previous tab,
-                        and my brother looked over at my screen.
-                        He responded, "That's a terrible queen move,
-                        you can just block with that pawn!"
-                    -->
+                    where you give up something of some point value<br>
+                    in exchange for something of another point value.<br>
                     <br>
-                    <div id="tab3board" style="width: 300px"></div>
-                    <script>
-                        var tab3board = Chessboard('tab3board', 'start');
-                        tab3board.move("e2-e4");
-                        tab3board.move("e7-e5");
-                        tab3board.move("d1-h5");
-                        tab3board.move("g7-g6");
-                    </script>
-                    <br>
-                </p>
-            </div>
-            <div id="tab4">
-                <h2>The Wayward Queen Attack</h2>
-                <p>
-                    This mistake, even with good play after,<br>
-                    leads to Black being down a rook at minimum,<br>
-                    with White's queen now embedded in Black's defenses.<br>
-                    <br>
-                    <div id="tab4board" style="width: 300px"></div>
-                    <script>
-                        var tab4board = Chessboard('tab4board', 'start');
-                        tab4board.move("e2-e4");
-                        tab4board.move("e7-e5");
-                        tab4board.move("d1-h5");
-                        tab4board.move("g7-g6");
-                        tab4board.move("h5-e5");
-                        tab4board.move("g8-e7");
-                        tab4board.move("e5-h8");
-                    </script>
+                    Every interaction in chess<br>
+                    is a trade of some form,<br>
+                    good trade or bad trade,<br>
+                    simple trade or complex trade.<br>
                     <br>
                 </p>
             </div>
             <div id="tab5">
-                <h2>The Wayward Queen Attack</h2>
+                <h2>Trades</h2>    
                 <p>
-                    With White playing their queen so early, Black has to pull out defensive moves<br>
-                    that neutralize the queen without creating additional danger.<br>
-                    This move is a better response.<br>
+                    Your goal is to maximize the value<br>
+                    gained from an interaction,<br>
+                    to tip the scales<br>
+                    as far in your favor as possible.<br>
                     <br>
-                    <div id="tab5board" style="width: 300px"></div>
-                    <script>
-                        var tab5board = Chessboard('tab5board', 'start');
-                        tab5board.move("e2-e4");
-                        tab5board.move("e7-e5");
-                        tab5board.move("d1-h5");
-                        tab5board.move("b8-c6");
-                    </script>
+                    Your opponent is thinking about this, too,<br>
+                    and it is useful to consider whether your opponent<br>
+                    would or would not act on something<br>
+                    as part of evaluating the value of an interaction.<br>
                     <br>
                 </p>
             </div>
             <div id="tab6">
-                <h2>The Scholar's Mate</h2>
+                <h2>Threatening</h2>    
                 <p>
-                    A harder line to spot is the line that<br>
-                    White often sets up in this position:<br>
-                    the <i>Scholar's Mate</i>.<br>
-                    <br>
-                    <div id="tab6board" style="width: 300px"></div>
-                    <script>
-                        var tab6board = Chessboard('tab6board', 'start');
-                        tab6board.move("e2-e4");
-                        tab6board.move("e7-e5");
-                        tab6board.move("d1-h5");
-                        tab6board.move("b8-c6");
-                        tab6board.move("f1-c4");
-                    </script>
+                    One piece <i>threatens</i> another<br>
+                    if it would be reasonable to state<br>
+                    that the piece would capture the other<br>
+                    if the player was given a turn to do so.<br>
                     <br>
                 </p>
             </div>
             <div id="tab7">
-                <h2>The Scholar's Mate</h2>
+                <h2>Threatening</h2>    
                 <p>
-                    It is one of the fastest checkmates in the game.<br>
-                    The goal is to apply pressure to the pawn<br>
-                    in front of the Black King's Bishop.<br>
+                    For example, in the position below<br>
+                    the black rook threatens the white pawn,<br>
+                    because Black could capture it at any moment.<br>
                     <br>
                     <div id="tab7board" style="width: 300px"></div>
                     <script>
-                        var tab7board = Chessboard('tab7board', 'start');
-                        tab7board.move("e2-e4");
-                        tab7board.move("e7-e5");
-                        tab7board.move("d1-h5");
-                        tab7board.move("b8-c6");
-                        tab7board.move("f1-c4");
-                        
-                        //Highlight a square
-                        let board7DOM = document.getElementById("tab7board");
-                        let squares7DOM = board7DOM.getElementsByClassName("square-55d63");
-                        squares7DOM[13].style.backgroundColor = "red";
+                        var threaten7 = {
+                        d8: 'bR',
+                        d4: 'wP',
+                    }
+                        var tab7board = Chessboard('tab7board', threaten7);
                     </script>
-                    <br>
                 </p>
             </div>
             <div id="tab8">
-                <h2>The Scholar's Mate</h2>
+                <h2>Threatening</h2>    
                 <p>
-                    If Black does not make the right move,<br>
-                    White can capture this pawn with their Queen,<br>
-                    which can not Black's King cannot escape or capture.<br>
+                    In this position, on the other hand,<br>
+                    if Black takes the pawn, they lose their rook.<br>
+                    In this position, the pawn is <i>not threatened</i>.<br>
                     <br>
                     <div id="tab8board" style="width: 300px"></div>
                     <script>
-                        var tab8board = Chessboard('tab8board', 'start');
-                        tab8board.move("e2-e4");
-                        tab8board.move("e7-e5");
-                        tab8board.move("d1-h5");
-                        tab8board.move("b8-c6");
-                        tab8board.move("f1-c4");
-                        tab8board.move("g8-f6");
-                        tab8board.move("h5-f7");
-                        //Highlight a square
-                        let board8DOM = document.getElementById("tab8board");
-                        let squares8DOM = board8DOM.getElementsByClassName("square-55d63");
-                        squares8DOM[13].style.backgroundColor = "red";
+                        var threaten8 = {
+                        d8: 'bR',
+                        d4: 'wP',
+                        d1: 'wR',
+                    }
+                        var tab8board = Chessboard('tab8board', threaten8);
                     </script>
-                    <br>
                 </p>
             </div>
             <div id="tab9">
-                <div id="tab9boardheader">
-                    <div class="InteractiveChess" id="instruction" style="background-color:lightgray;">
-                        <h3>Find a black piece that can stop checkmate</h3>
-                    </div>
-                <div id="tab9board" style="width: 400px"></div>
-                <div class="InteractiveChess" id="tab9boardfeedback" style="background-color:lightgray;">
-                        <h3 id="waiting">Waiting for user input...</h3>
-                        <h3 id="great_outcome" style="color:green;">This is the best piece to use!</h3>
-                        <h3 id="good_outcome" style="color:orange;">This piece works, but can you find a better one?</h3>
-                        <h3 id="bad_outcome" style="color:red;">Not quite. Try again.</h3>
-                        <h3 id="invalid" style="color:purple;">This is not one of Black's pieces.</h3>
-                    </div>
-                </div>
-                <script>
-                    var tab9board = Chessboard('tab9board', 'start');
-                        tab9board.move("e2-e4");
-                        tab9board.move("e7-e5");
-                        tab9board.move("d1-h5");
-                        tab9board.move("b8-c6");
-                        tab9board.move("f1-c4");
-                    var boardUI = new InteractiveChess(   
-                    [   ["great_outcome", "g7"],
-                        ["good_outcome", "d8","d7"],
-                        ["bad_outcome", "a8","c8","e8","f8","g8","h8",
-                                        "a7","b7","c7","f7","h7",
-                                        "c6",
-                                        "e5"],
-                        ["invalid", "ALL ELSE"]
-                    ],
-                    [],
-                    false,
-                    "",
-                    tab9board,
-                    "tab9board"
-                    );
-                </script>
+                <h2>Defending</h2>    
+                <p>
+                    A piece, in contrast, is <i>defended</i><br>
+                    if a piece that captured it<br>
+                    would be under threat<br>
+                    of capture itself.<br>
+                    <br>
+                    In the previous position,<br>
+                    White's rook is defending<br>
+                    White's pawn.<br>
+                    <br>
+                </p>
             </div>
             <div id="tab10">
-                <h2>Beating The Scholar's Mate</h2>
+                <h2>Defending</h2>    
                 <p>
-                    The move by Black shown is the best move to play<br>
-                    to eliminate the immediate threat of Checkmate.<br>
-                    White can reapply the threat, however.<br>
+                    You should make moves broadly<br>
+                    that are defended by previous moves.<br>
                     <br>
-                    <div id="tab10board" style="width: 300px"></div>
-                    <script>
-                        var tab10board = Chessboard('tab10board', 'start');
-                        tab10board.move("e2-e4");
-                        tab10board.move("e7-e5");
-                        tab10board.move("d1-h5");
-                        tab10board.move("b8-c6");
-                        tab10board.move("f1-c4");
-                        tab10board.move("g7-g6");
-
-                        let board10DOM = document.getElementById("tab10board");
-                        let squares10DOM = board10DOM.getElementsByClassName("square-55d63");
-                        squares10DOM[13].style.backgroundColor = "red";
-                    </script>
+                    Having a chain of pieces defended<br>
+                    by the previous one back in the chain<br>
+                    allows you to push deep into enemy territory<br>
+                    while your opponent has to pay a steep price<br>
+                    to break up your offensive.<br>
+                    <br>
+                    A good offense always has<br>
+                    a good defense backing it up.<br>
                     <br>
                 </p>
             </div>
             <div id="tab11">
-                <h2>Beating The Scholar's Mate</h2>
+                <h2>Forks</h2>    
                 <p>
-                    If White is insistent,<br>
-                    the Black can pull out their second knight.<br>
-                    Black now has a solid defensive position.<br>
+                    The final topic for this lesson<br>
+                    is <i>forks</i>.
                     <br>
-                    <div id="tab11board" style="width: 300px"></div>
-                    <script>
-                        var tab11board = Chessboard('tab11board', 'start');
-                        tab11board.move("e2-e4");
-                        tab11board.move("e7-e5");
-                        tab11board.move("d1-h5");
-                        tab11board.move("b8-c6");
-                        tab11board.move("f1-c4");
-                        tab11board.move("g7-g6");
-                        tab11board.move("h5-f3");
-                        tab11board.move("g8-f6");
-
-                        let board11DOM = document.getElementById("tab11board");
-                        let squares11DOM = board11DOM.getElementsByClassName("square-55d63");
-                        squares11DOM[13].style.backgroundColor = "red";
-                    </script>
+                    A fork is a situation where<br>
+                    two pieces are being threatened<br>
+                    by the same source.<br>
                     <br>
+                    Here, you can predict that the player<br>
+                    whose pieces are being threatened<br>
+                    will choose to save the piece<br>
+                    with the higher material value.<br>
+                    <br> 
                 </p>
             </div>
             <div id="tab12">
+                <h2>Forks</h2>    
+                <p>
+                    In this example, the black bishop<br>
+                    threatens both the white rook and knight.<br>
+                    However, Black would choose the rook over the knight.<br>
+                    <br>
+                    <div id="tab12board" style="width: 300px"></div>
+                    <script>
+                        var fork12 = {
+                        d6: 'bB',
+                        b4: 'wR',
+                        d4: 'wP',
+                        f4: 'wN',
+                    }
+                        var tab12board = Chessboard('tab12board', fork12);
+                    </script>
+                </p>
+            </div>
+            <div id="tab13">
+                <h2>Forks</h2>    
+                <p>
+                    This fork then forces White<br>
+                    to sacrifice the value of a knight<br>
+                    over the next turn to save their rook.<br>
+                    <br>
+                    <div id="tab13board" style="width: 300px"></div>
+                    <script>
+                        var fork13 = {
+                        d6: 'bB',
+                        b4: 'wR',
+                        d4: 'wP',
+                        f4: 'wN',
+                    }
+                        var tab13board = Chessboard('tab13board', fork13);
+                    </script>
+                </p>
+            </div>
+            <div id="tab14">
+                <h2>Forks</h2>    
+                <p>
+                    Forks are a solid offensive measure<br>
+                    that can break up the defenses of an opponent<br>
+                    by forcing them to choose who to save.<br>
+                    <br>
+                    <div id="tab14board" style="width: 300px"></div>
+                    <script>
+                        var fork14 = {
+                        d6: 'bB',
+                        b4: 'wR',
+                        d4: 'wP',
+                        f4: 'wN',
+                    }
+                        var tab14board = Chessboard('tab14board', fork14);
+                    </script>
+                </p>
+            </div>
+            <div id="tab15">
                 <h2>Lesson Complete</h2>
                 <p>
                 You have completed this lesson!<br>

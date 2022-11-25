@@ -229,7 +229,7 @@ function checkSquare(myInteractiveChess, dataSquare)
     
     outcomeToDisplay = myInteractiveChess.outcomeBoard[row][col];
     showTextFeedback(myInteractiveChess, outcomeToDisplay);
-    showPieceMove(myInteractiveChess, dataSquare);
+    showPieceMove(myInteractiveChess, dataSquare, outcomeToDisplay);
 }
 
 function showTextFeedback(myInteractiveChess, outcomeToDisplay)
@@ -248,13 +248,13 @@ function showTextFeedback(myInteractiveChess, outcomeToDisplay)
     }
 }
 
-function showPieceMove(myInteractiveChess, dataSquare)
+function showPieceMove(myInteractiveChess, dataSquare, outcomeToDisplay)
 {
     let currentPosition = '';
     let coords = toArrayFormat(dataSquare);
     let row = coords[0];
     let col = coords[1];
-    if(myInteractiveChess.allowPieceMovement)
+    if(myInteractiveChess.allowPieceMovement && outcomeToDisplay != "invalid")
     {
         for(let i = 0; i < 8; i++)
         {

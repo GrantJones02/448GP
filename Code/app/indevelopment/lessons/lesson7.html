@@ -1,0 +1,199 @@
+<!--
+    file:       lesson7.html
+    author:     Jack Reynolds
+    modified:   25 November 2022
+-->
+<html> 
+    <head> 
+        <title> Lesson 7 </title> 
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+        Scripts for HTML Tabs element
+    --> <script src="original_js/Tabs.js"></script>
+
+    <!--
+        Scripts for HTML ClickableImage element
+    --> <script src="original_js/ClickableImage.js"></script>
+    <link href="original_css/lessonUI.css" rel="stylesheet" type="text/css"/>
+
+    <!-- 
+        Scripts for HTML InteractiveChess element
+    --> <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="js/chessboard-1.0.0.min.js"></script>
+        <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
+        <script src="original_js/InteractiveChess.js"></script>
+    </head>
+ 
+    <body>
+        <div id="lessontitle">
+            <h1>Lesson 7: Castling</h1>
+        </div>
+        <div id="headerbuttons">
+            <button onclick="previous(lessontabs)"><<|</button>
+            <button onclick="next(lessontabs)">|>></button>
+            <button onclick="window.location.href='index.html';">Lesson Home</button>
+        </div>
+        <div id="lessontabs">
+            <div id="tab0">
+                <h2>Lesson Introduction</h2>
+                <p>
+                Welcome again to ChessEDU!<br>
+                We're glad to have you.<br>
+                <br>
+                In this lesson, you will learn<br>
+                a more advanced move you can make<br>
+                with your king and a rook:<br>
+                Castling.<br>    
+                <br>
+                Please continue to the next page<br>
+                to start this lesson.<br>
+                <br> 
+                </p>
+            </div>
+            <div id="tab1">
+                <h2>Setup</h2>
+                <p>
+                    There are a couple rules for how<br>
+                    castling has to be set up.<br>
+                    The rules are:<br>
+                    <br>
+                    <div id="tab1board" style="width: 300px"></div>
+                    <script>
+                        var setup = {
+                        a1: 'wR', e1: 'wK', h1: 'wR',
+                        b2: 'wP', c2: 'wP', f2: 'wP', g2: 'wP',
+                        c3: 'wN', f3: 'wN',
+                        c8: 'bR'
+                    }
+                        var tab1board = Chessboard('tab1board', setup);
+                    </script>
+                </p>
+            </div>
+            <div id="tab2">
+                <h2>Setup</h2>
+                <p>
+                    RULE 1: Neither the king nor the rook<br>
+                    to castle with can have been moved<br>
+                    from their starting positions.<br>
+                    <br>
+                    <div id="tab2board" style="width: 300px"></div>
+                    <script>
+                        var tab2board = Chessboard('tab2board', setup);
+                        tab2board.move("a1-a8");
+                        tab2board.move("h1-h8");
+                        tab2board.move("e1-e2");
+                    </script>
+                </p>
+            </div>
+            <div id="tab3">
+                <h2>Setup</h2>
+                <p>
+                    RULE 2: The space between<br>
+                    the king and the rook to castle with<br>
+                    must have no other pieces obstructing it.<br>
+                    <br>
+                    <div id="tab3board" style="width: 300px"></div>
+                    <script>
+                        var tab3board = Chessboard('tab3board', setup);
+                        tab3board.move("c3-b1");
+                        tab3board.move("f3-g1");
+                    </script>
+                </p>
+            </div>
+            <div id="tab4">
+                <h2>Setup</h2>
+                <p>
+                    RULE 3: The king can not be in check,<br>
+                    and none of spaces the king moves between or lands on<br>
+                    during the castling move can be under attack either.<br>
+                    <br>
+                    <div id="tab4board" style="width: 300px"></div>
+                    <script>
+                        var tab4board = Chessboard('tab4board', setup);
+                        tab4board.move("c8-e8");
+                    </script>
+                </p>
+            </div>
+            <div id="tab5">
+                <h2>Castling</h2>
+                <p>
+                    With all of these conditions fulfilled,<br>
+                    there are two forms of castling available:<br>
+                    <i>short castling</i> and <i>long castling</i>.<br>
+                    <br>
+                    <div id="tab5board" style="width: 300px"></div>
+                    <script>
+                        var tab5board = Chessboard('tab5board', setup);
+                    </script>
+                </p>
+            </div>
+            <div id="tab6">
+                <h2>Short Castling</h2>
+                <p>
+                    The <i>short castle</i> swaps the king<br>
+                    with the rook that is closer.<br>
+                    Here it is done below.<br>
+                    <br>
+                    <div id="tab6board" style="width: 300px"></div>
+                    <script>
+                        var tab6board = Chessboard('tab6board', setup);
+                        tab6board.move("e1-g1");
+                        tab6board.move("h1-f1");
+                    </script>
+                </p>
+            </div>
+            <div id="tab7">
+                <h2>Castling</h2>
+                <p>
+                    The <i>long castle</i> swaps the king<br>
+                    with the rook that is further.<br>
+                    Here it is done below.<br>
+                    <br>
+                    <div id="tab7board" style="width: 300px"></div>
+                    <script>
+                        var tab7board = Chessboard('tab7board', setup);
+                        tab7board.move("e1-c1");
+                        tab7board.move("a1-d1");
+                    </script>
+                </p>
+            </div>
+            <div id="tab8">
+                <h2>Benefits of Castling</h2>
+                <p>
+                    Castling is a move that is<br>
+                    <i>rarely ever</i> a bad choice.<br>
+                    <br>
+                    This is because castling both<br>
+                    moves the king to a more<br>
+                    defensible position and<br>
+                    moves the rook to a position<br>
+                    where it can be more easily<br>
+                    activated.<br>
+                </p>
+            </div>
+            <div id="tab9">
+                <h2>Lesson Complete</h2>
+                <p>
+                You have completed this lesson!<br>
+                To progress to the next lesson, click the "Lesson Home" button<br>
+                or use the button below to return to the lesson select page.<br>
+                <br>
+                <button onclick="window.location.href='index.html';">Complete Lesson</button>
+                <br>
+                To restart this lesson, hit the next button again.<br> 
+                </p>
+            </div>
+        </div>
+        <div id="footerbuttons">
+            <button onclick="previous(lessontabs)"><<|</button>
+            <button onclick="next(lessontabs)">|>></button>
+            <button onclick="window.location.href='index.html';">Lesson Home</button>
+        </div>
+        <script>
+            const lessontabs = new Tabs('lessontabs');
+        </script>  
+    </body> 
+</html>

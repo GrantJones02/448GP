@@ -15,7 +15,7 @@ let basic_lessons = [
     "piece button rook",
     "piece button queen",
     "piece button king",
-]; 
+];
 
 leftarrow.addEventListener('click', (e) => {
     selector--;
@@ -28,9 +28,9 @@ rightarrow.addEventListener('click', (e) => {
 })
 
 function updateBasicLessons() {
-    box1.className = basic_lessons[selector % 6];
-    box2.className = basic_lessons[(selector + 1) % 6];
-    box3.className = basic_lessons[(selector + 2) % 6];
+    box1.className = basic_lessons[selector % 5];
+    box2.className = basic_lessons[(selector + 1) % 5];
+    box3.className = basic_lessons[(selector + 2) % 5];
 }
 
 let basic_lesson_buttons = [box1, box2, box3];

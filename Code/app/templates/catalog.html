@@ -2,7 +2,8 @@
 
 {% block title %}Course Catalog{% endblock %}
 {% block header %}
-  <link href="../static/lessonUI.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="/static/catalog.css">
+  <script src="static/catalog.js"></script>
 {% endblock %}
 
 {% block login %}
@@ -18,69 +19,106 @@
 {% endblock %}
 
 {% block body %}
-    <!--
-    <div id="lesson0link">
-        <h2>Lesson 0 : [SAMPLE LESSON TOPIC]</h2>
-        <p>Learn about [SAMPLE LESSON TOPIC] today! (template for lesson page)</p>
-        <button onclick="window.location.href='lesson0.html';">Go to lesson |>></button>
-    </div>
-    -->
-    <h1>Part I: Introduction</h1>
-    <div id="lesson1link">
-        <h2>Lesson 1: How To Use ChessEDU</h2>
-        <p>The introduction for all starting users.</p>
-        <button onclick="window.location.href='/course/lesson1';">Go to lesson |>></button>
-    </div>
-    <div id="lesson2link">
-        <h2>Lesson 2: Pieces of the Game</h2>
-        <p>Learn about the tools you possess to lead you to victory!</p>
-        <button onclick="window.location.href='/course/lesson2';">Go to lesson |>></button>
-    </div>
-    <div id="lesson3link">
-        <h2>Lesson 3: Basic Movement</h2>
-        <p>Learn what moves each piece you have learned about is capable of.</p>
-        <button onclick="window.location.href='/course/lesson3';">Go to lesson |>></button>
-    </div>
-    <div id="lesson4link">
-        <h2>Lesson 4: Your First Game</h2>
-        <p>Learn how to start a game with a friend!</p>
-        <button onclick="window.location.href='/course/lesson4';">Go to lesson |>></button>
-    </div>
-    <div id="lesson5link">
-        <h2>Lesson 5: Avoiding An Early Defeat</h2>
-        <p>Learn how to avoid losing early with a defense against the Scholars Mate.</p>
-        <button onclick="window.location.href='/course/lesson5';">Go to lesson |>></button>
-    </div>
-    <h1>Part II: Tactics</h1>
-    <div id="lesson6link">
-        <h2>Lesson 6: Defending</h2>
-        <p>Stand your ground with an eye on defending.</p>
-        <button onclick="window.location.href='/course/lesson6';">Go to lesson |>></button>
-    </div>
-    <div id="lesson7link">
-        <h2>Lesson 7: Castling</h2>
-        <p>Learn a special move to help safeguard your King.</p>
-        <button onclick="window.location.href='/course/lesson7';">Go to lesson |>></button>
-    </div>
-    <div id="lesson8link">
-        <h2>Lesson 8: Pins and Skewers</h2>
-        <p>Ensnare your opponent in a trap using the tactics of pins and skewers.</p>
-        <button onclick="window.location.href='/course/lesson8';">Go to lesson |>></button>
-    </div>
-    <div id="lesson9link">
-        <h2>Lesson 9: Forcing Moves</h2>
-        <p>Control the flow of your opponent using forcing moves.</p>
-        <button onclick="window.location.href='/course/lesson9';">Go to lesson |>></button>
-    </div>
-    <div id="lesson10link">
-        <h2>Lesson 10: Discovered Moves</h2>
-        <p>Reveal new attacks against your opponent using discovered moves.</p>
-        <button onclick="window.location.href='/course/lesson10.html';">Go to lesson |>></button>
-    </div>
-    <div id="lesson11link">
-        <h2>Lesson 11: The Ladder Checkmate</h2>
-        <p>Learn a new tactic to help guarantee checkmates.</p>
-        <button onclick="window.location.href='/course/lesson11';">Go to lesson |>></button>
-    </div>
-    </p>
+  <div class="wrapper">
+      <div class="lesson_browser">
+          <strong>Basic Lessons</strong>
+          <div class="module-container">
+              <div class="left-arrow" onclick="server.previous()"><</div>
+              <div class="lesson-box" onclick="window.location.href='/course/lesson1'">
+                  <h2>How to use ChessEDU</h2>
+              </div>
+              <div class="lesson-box" onclick="window.location.href='/course/lesson2'">
+                  <h2>Pieces of the Game</h2>
+              </div>
+              <div class="lesson-box" onclick="window.location.href='/course/lesson3'">
+                  <h2>Basic Movement</h2>
+              </div>
+              <div class="right-arrow" onclick="server.next()">></div>
+          </div>
+          <strong>Tactics</strong>
+          <div class="module-container">
+              <div class="left-arrow" onclick="server.previous()"><</div>
+              <div class="lesson-box" onclick="window.location.href='/course/lesson6'">
+                  <h2>Defending</h2>
+              </div>
+              <div class="lesson-box" onclick="window.location.href='/course/lesson7'">
+                  <h2>Castling</h2>
+              </div>
+              <div class="lesson-box" onclick="window.location.href='/course/lesson8'">
+                  <h2>Pins and Skewers</h2>
+              </div>
+              <div class="right-arrow" onclick="server.next()">></div>
+          </div>
+          <div class="module-container">
+            More lesson modules coming soon!
+          </div>
+          <div class="module-container">
+            More lesson modules coming soon!
+          </div>
+          <div class="module-container">
+            More lesson modules coming soon!
+          </div>
+      </div>
+      <div class="all_lessons">
+          <div class="lesson" onclick="window.location.href='/lesson1'">
+            <div class="lesson-title"><h2>How to use ChessEDU</h2></div>
+            <div class="lesson-desc"><p>The introduction for all new users.</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson2'">
+            <div class="lesson-title"><h2>Pieces of the Game</h2></div>
+            <div class="lesson-desc"><p>Learn about the tools you posses to lead you to victory!</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson3'">
+            <div class="lesson-title"><h2>Basic Movement</h2></div>
+            <div class="lesson-desc"><p>Learn what moves each piece you have learned about is capable of.</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson4'">
+            <div class="lesson-title"><h2>Your First Game</h2></div>
+            <div class="lesson-desc"><p>Learn how to start a game with a friend!</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson5'">
+            <div class="lesson-title"><h2>Avoiding An Early Defeat</h2></div>
+            <div class="lesson-desc"><p>Learn how to avoid losing early with a defense against the Scholars Mate.</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson6'">
+            <div class="lesson-title"><h2>Defending</h2></div>
+            <div class="lesson-desc"><p>Stand your ground with an eye on defending.</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson7'">
+            <div class="lesson-title"><h2>Castling</h2></div>
+            <div class="lesson-desc"><p>Learn a special move to help safeguard your King.</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson8'">
+            <div class="lesson-title"><h2>Pins and Skewers</h2></div>
+            <div class="lesson-desc"><p>Ensnare your opponent in a trap using the tactics of pins and skewers.</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson9'">
+            <div class="lesson-title"><h2>Forcing Moves</h2></div>
+            <div class="lesson-desc"><p>Control the flow of your opponent using forcing moves.</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson10'">
+            <div class="lesson-title"><h2>Discovered Moves</h2></div>
+            <div class="lesson-desc"><p>Reveal new attacks against your opponent using discovered moves.</p></div>
+          </div>
+          <div class="lesson" onclick="window.location.href='/lesson11'">
+            <div class="lesson-title"><h2>The Ladder Checkmate</h2></div>
+            <div class="lesson-desc"><p>Learn a new tactic to help guarantee checkmates.</p></div>
+          </div>
+          <div class="lesson">
+              <div class="lesson-desc"><p>More lessons coming soon!</p></div>
+          </div>
+          <div class="lesson">
+              <div class="lesson-desc"><p>More lessons coming soon!</p></div>
+          </div>
+          <div class="lesson">
+              <div class="lesson-desc"><p>More lessons coming soon!</p></div>
+          </div>
+          <div class="lesson">
+              <div class="lesson-desc"><p>More lessons coming soon!</p></div>
+          </div>
+          <div class="lesson">
+              <div class="lesson-desc"><p>More lessons coming soon!</p></div>
+          </div>
+      </div>
+  </div>
 {% endblock %}

@@ -1,6 +1,8 @@
 ## Flask Packages ##
 from flask import Flask, flash, render_template, redirect, request, url_for, session
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+""" Uncomment the line directly below for the jyserver attempt """
+#####import jyserver.Flask as js
 ## Remove in produciton, just allows to run and access on local device
 from flask_cors import CORS
 ## Relative import for forms and objects used in the app ##
@@ -25,6 +27,40 @@ CORS(app)
 
 # Manager objects
 account_manager = AccountManager()
+
+""" Uncomment the block of code for the jyserver attempt """
+# @js.use(app) # Connect Flask object to jyserver
+# class App:
+#     @js.task
+#     def main(self):
+#         self.modules = [
+#             [["How to use ChessEDU", "1"], ["Pieces of the Game", "2"], ["Basic Movement", "3"], ["Your First Game", "4"], ["Avoiding an Early Defeat", "5"]],
+#             [["Defending", "6"], ["Castling", "7"], ["Pins and Skewers", "8"], ["Forcing Moves", "9"], ["Discovered Moves", "10"], ["The Ladder Checkmate", "11"]]
+#             ]
+#         self.selectors = []
+#         for module in self.js.document.getElementsByClassName('module-container'):
+#             self.selectors.append(0)
+#
+#     def increment(self, index): # Next method for document
+#         moduleContainer = self.js.document.getElementsByClassName('module-container')[index[0]]
+#         lessonBoxes = moduleContainer.getElementsByClassName('lesson-box')
+#         self.selectors[index] += 1
+#         self.updateBoxes(lessonBoxes, index)
+#
+#     def decrement(self, index): # Previous method for document
+#         if (selectors[index] > 0):
+#             moduleContainer = self.js.document.getElementsByClassName('module-container')[index[0]]
+#             lessonBoxes = moduleContainer.getElementsByClassName('lesson-box')
+#             self.selectors[index] -= 1
+#             self.updateBoxes(lessonBoxes, index)
+#
+#     def updateBoxes(self, boxes, moduleIndex):
+#         boxes[0].childNodes[1].textContent = self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][0]
+#         boxes[0].onclick = "/course/lesson" + self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][1]
+#         boxes[1].childNodes[1].textContent = self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][0]
+#         boxes[1].onclick = "/course/lesson" + self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][1]
+#         boxes[2].childNodes[1].textContent = self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][0]
+#         boxes[3].onclick = "/course/lesson" + self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][1]
 
 '''
     function: load_user
@@ -189,8 +225,12 @@ def account():
 '''
 @app.route('/catalog', methods=('GET', 'POST'))
 def catalog():
+    """
+        The following commented code is for the jyserver attempt. Uncomment this code and then comment the line afterwards to try jyserver
+    """
+    # App.main()
+    # return App.render(render_template("catalog.html", logged_in=current_user.is_authenticated)) # JyServer "App" render template
     return render_template("catalog.html", logged_in=current_user.is_authenticated)
-
 '''
     function : course
     params : id

@@ -11,26 +11,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- 
-        Scripts for chessboard.js
+        Scripts for chessboard.js, chess.js
     --> <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="js/chessboard-1.0.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js" integrity="sha384-s3XgLpvmHyscVpijnseAmye819Ee3yaGa8NxstkJVyA6nuDFjt59u1QvuEl/mecz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
-        <script src="original_js/InteractiveChess.js"></script>
+        
         <link href="original_css/practice.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 
         <div class="row">
-            <div class="column">
+            <div class="column1">
                 <div class="status">
                     <h2 id="status"></h2>
                 </div>
                 <div id="myBoard" style="width: 400px"></div>
             </div>
-            <div class="column">
-                <h2>Move History</h2>
-                <div id="pgn"></div>
+            <div class="column2">
+                <div class="history">
+                    <h2>Move History</h2>
+                </div>
+                <div id="pgn" class="pgn"></div>
             </div>    
         </div>
         <script>
@@ -41,6 +43,8 @@ var board = null
 var game = new Chess();
 var $status = $('#status')
 var $pgn = $('#pgn')
+
+var pgnElement = document.getElementById("pgn"); 
 
 function onDragStart (source, piece, position, orientation) {
   // do not pick up pieces if the game is over
@@ -102,7 +106,17 @@ function updateStatus () {
   }
 
   $status.html(status)
-  $pgn.html( game.pgn({ max_width: 5, newline_char: '<br />' }) );
+  $pgn.html( "<div class='move'>" + game.pgn({ max_width: 5, newline_char: '<br /></div><div  class="move">' }) );
+  preventMoveHistoryOverflow();
+}
+
+function preventMoveHistoryOverflow()
+{
+    let moves = document.getElementsByClassName("move");
+    if(moves.length > 20)
+    {
+        moves[0].remove();
+    }
 }
 
 var config = {

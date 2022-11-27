@@ -1,0 +1,51 @@
+
+
+div.status {
+  width: 392px;
+  height: 52px;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  background-color:lightgray;
+}
+
+div.history {
+  width: 192px;
+  height: 52px;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  background-color:lightgray;
+}
+
+div.pgn {
+  width: 192px;
+  max-height: 392px;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  background-color:lightseagreen;
+}
+
+/* The following segment of
+CSS is sourced from a tutorial
+on w3schools:
+https://www.w3schools.com/howto/howto_css_two_columns.asp
+*/
+
+.column1 {
+    float: left;
+    width: 30%;
+}
+
+.column2 {
+    float: left;
+    width: 70%;
+}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

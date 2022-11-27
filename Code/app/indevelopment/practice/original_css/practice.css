@@ -1,0 +1,28 @@
+
+
+div.status {
+  width: 392px;
+  height: 52px;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  background-color:lightgray;
+}
+
+/* The following segment of
+CSS is sourced from a tutorial
+on w3schools:
+https://www.w3schools.com/howto/howto_css_two_columns.asp
+*/
+
+.column {
+    float: left;
+    width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

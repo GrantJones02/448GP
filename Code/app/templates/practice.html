@@ -3,24 +3,33 @@
     author:     Jack Reynolds
     modified:   25 November 2022
 -->
-<html> 
-    <head> 
-        <title> Practice </title> 
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-    <!-- 
+{% block title %}Practice Game{% endblock %}
+{% block header %}
+    <!--
         Scripts for chessboard.js, chess.js
     --> <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script src="js/chessboard-1.0.0.min.js"></script>
+        <script src="../static/chessboard-1.0.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js" integrity="sha384-s3XgLpvmHyscVpijnseAmye819Ee3yaGa8NxstkJVyA6nuDFjt59u1QvuEl/mecz" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
-        
-        <link href="original_css/practice.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
+        <link rel="stylesheet" href="../static/chessboard-1.0.0.min.css">
 
+        <link href="../static/practice.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block login %}
+  {% if logged_in %}
+  <button id="logbtn" class="pagebtn" onclick="window.location.href='/logout'">
+    Logout
+  </button>
+  {% else %}
+  <button id="logbtn" class="pagebtn" onclick="window.location.href='/login'">
+    Login / Sign Up
+  </button>
+  {% endif %}
+{% endblock %}
+
+{% block body %}
         <div class="row">
             <div class="column1">
                 <div class="status">
@@ -33,10 +42,10 @@
                     <h2>Move History</h2>
                 </div>
                 <div id="pgn" class="pgn"></div>
-            </div>    
+            </div>
         </div>
         <script>
-// This code segment is sourced in large part 
+// This code segment is sourced in large part
 // from the chessboard.js documentation.
 
 var board = null
@@ -44,7 +53,7 @@ var game = new Chess();
 var $status = $('#status')
 var $pgn = $('#pgn')
 
-var pgnElement = document.getElementById("pgn"); 
+var pgnElement = document.getElementById("pgn");
 
 function onDragStart (source, piece, position, orientation) {
   // do not pick up pieces if the game is over
@@ -129,6 +138,5 @@ var config = {
 board = Chessboard('myBoard', config)
 
 updateStatus()
-        </script> 
-    </body> 
-</html>
+        </script>
+{% endblock %}

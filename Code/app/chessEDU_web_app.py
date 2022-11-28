@@ -1,18 +1,17 @@
 ## Flask Packages ##
 from flask import Flask, flash, render_template, redirect, request, url_for, session
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
-""" Uncomment the line directly below for the jyserver attempt """
-#####import jyserver.Flask as js
 ## Remove in produciton, just allows to run and access on local device
 from flask_cors import CORS
 ## Relative import for forms and objects used in the app ##
 from forms import login_form, signup_form
 from user import User
 from account_manager import AccountManager
-## Other packegs for avrious other functionality ##
+## Other packegs for various other functionality ##
 import sqlite3
 import secrets
 from datetime import timedelta
+import os, os.path
 
 app = Flask(__name__)
 # Secret key used for session encryption, randomly generated on each run
@@ -27,40 +26,6 @@ CORS(app)
 
 # Manager objects
 account_manager = AccountManager()
-
-""" Uncomment the block of code for the jyserver attempt """
-# @js.use(app) # Connect Flask object to jyserver
-# class App:
-#     @js.task
-#     def main(self):
-#         self.modules = [
-#             [["How to use ChessEDU", "1"], ["Pieces of the Game", "2"], ["Basic Movement", "3"], ["Your First Game", "4"], ["Avoiding an Early Defeat", "5"]],
-#             [["Defending", "6"], ["Castling", "7"], ["Pins and Skewers", "8"], ["Forcing Moves", "9"], ["Discovered Moves", "10"], ["The Ladder Checkmate", "11"]]
-#             ]
-#         self.selectors = []
-#         for module in self.js.document.getElementsByClassName('module-container'):
-#             self.selectors.append(0)
-#
-#     def increment(self, index): # Next method for document
-#         moduleContainer = self.js.document.getElementsByClassName('module-container')[index[0]]
-#         lessonBoxes = moduleContainer.getElementsByClassName('lesson-box')
-#         self.selectors[index] += 1
-#         self.updateBoxes(lessonBoxes, index)
-#
-#     def decrement(self, index): # Previous method for document
-#         if (selectors[index] > 0):
-#             moduleContainer = self.js.document.getElementsByClassName('module-container')[index[0]]
-#             lessonBoxes = moduleContainer.getElementsByClassName('lesson-box')
-#             self.selectors[index] -= 1
-#             self.updateBoxes(lessonBoxes, index)
-#
-#     def updateBoxes(self, boxes, moduleIndex):
-#         boxes[0].childNodes[1].textContent = self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][0]
-#         boxes[0].onclick = "/course/lesson" + self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][1]
-#         boxes[1].childNodes[1].textContent = self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][0]
-#         boxes[1].onclick = "/course/lesson" + self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][1]
-#         boxes[2].childNodes[1].textContent = self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][0]
-#         boxes[3].onclick = "/course/lesson" + self.modules[moduleIndex][self.selectors[moduleIndex] % len(modules[moduleIndex])][1]
 
 '''
     function: load_user
@@ -206,18 +171,6 @@ def logout():
     return redirect(url_for('home'))
 
 '''
-    function : account
-    params : None
-    return : Renders the board page
-    descr. : Directs the user to a page with their account information displayed.
-'''
-@app.route('/account', methods=('GET', 'POST'))
-def account():
-    if current_user.is_authenticated:
-        return render_template("account.html", logged_in=current_user.is_authenticated)
-    return redirect(url_for('home'))
-
-'''
     function : catalog
     params : None
     return : Renders the course catalog page
@@ -225,11 +178,6 @@ def account():
 '''
 @app.route('/catalog', methods=('GET', 'POST'))
 def catalog():
-    """
-        The following commented code is for the jyserver attempt. Uncomment this code and then comment the line afterwards to try jyserver
-    """
-    # App.main()
-    # return App.render(render_template("catalog.html", logged_in=current_user.is_authenticated)) # JyServer "App" render template
     return render_template("catalog.html", logged_in=current_user.is_authenticated)
 '''
     function : course
@@ -239,7 +187,11 @@ def catalog():
 '''
 @app.route('/course/<page>', methods=['GET'])
 def course(page):
-    return render_template(f"courses/{page}.html", logged_in=current_user.is_authenticated)
+    DIR = os.getcwd() + os.path.sep + "templates" + os.path.sep + "courses" + os.path.sep + page + ".html"
+    if os.path.exists(DIR):
+        return render_template(f"courses/{page}.html", logged_in=current_user.is_authenticated)
+    else:
+        return redirect(url_for('home'))
 
 '''
     function : board
@@ -247,38 +199,10 @@ def course(page):
     return : Renders the board page
     descr. : Directs the user to a interactive chessboard page.
 '''
-@app.route('/board', methods=('GET', 'POST'))
+@app.route('/practice', methods=('GET', 'POST'))
 def board():
-    return render_template("board.html", logged_in=current_user.is_authenticated)
+    return render_template("practice.html", logged_in=current_user.is_authenticated)
 
-# '''
-#     function : admin
-#     param : none
-#     return : Renders the admin page
-#     descr. : Handles input from the user manage individual user permissions.
-#     Login required
-# '''
-# @app.route('/~admin', methods=('GET', 'POST'))
-# @login_required
-# def admin():
-#     if not current_user.get_admin():
-#         return redirect(url_for('unauthorized'))
-#     else:
-#         if request.method == "GET":
-#             return render_template("admin.html", userData=account_manager.admin_user_data())
-#         elif request.method == "POST":
-#             # Do something
-#             return render_template("admin.html", userData=account_manager.admin_user_data())
-#         else:
-#             return redirect(url_for('home'))
-
-### Private functions ###
-# '''
-#     function:
-#     params:
-#     return:
-#     descr.:
-# '''
 
 if __name__ == "__main__":
     app.run()
